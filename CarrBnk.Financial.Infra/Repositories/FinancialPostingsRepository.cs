@@ -12,7 +12,7 @@ namespace Infra.Repositories
         {
             _mapper = mapper;
         }
-        public async Task<bool> Delete(Guid clientCode)
+        public async Task<bool> Delete(Guid Code)
         {
             return true;
         }
