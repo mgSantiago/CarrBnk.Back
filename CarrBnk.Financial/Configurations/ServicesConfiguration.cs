@@ -7,7 +7,7 @@ namespace App.Configurations
     {
         public static void AddServicesConfiguration(this IServiceCollection services)
         {
-            services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<Core.Repositories.IFinancialPostingsRepository, Infra.Repositories.FinancialPostingsRepository>();
         }
     }
 }

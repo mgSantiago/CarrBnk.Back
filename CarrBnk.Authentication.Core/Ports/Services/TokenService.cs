@@ -1,12 +1,12 @@
 ﻿using CarrBnk.Authentication.Core.Entities;
-using CarrBnk.Authentication.Core.UseCase.Interfacecs;
+using CarrBnk.Authentication.Core.Ports.Services.Interfaces;
 using Infra.Settings;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace CarrBnk.Authentication.UseCase.Services
+namespace CarrBnk.Authentication.Core.Ports.Services
 {
     public class TokenService : ITokenService
     {
@@ -16,7 +16,7 @@ namespace CarrBnk.Authentication.UseCase.Services
         {
             _settings = settings;
         }
-        public async Task<string> GenerateToken(User user)
+        public async Task<string> GetToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_settings.Secret);

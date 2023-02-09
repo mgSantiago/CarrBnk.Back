@@ -13,16 +13,16 @@ namespace CarrBnk.Financial.Controllers.V1
     public class TransactionsController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IClientRepository _repository;
+        private readonly IFinancialPostingsRepository _repository;
 
-        public TransactionsController(IMediator mediator, IClientRepository repository)
+        public TransactionsController(IMediator mediator, IFinancialPostingsRepository repository)
         {
             _mediator = mediator;
             _repository = repository;
         }
 
         [HttpGet("{clientCode}")]
-        public async Task<IActionResult> Get([FromRoute] Guid clientCode)
+        public async Task<IActionResult> Get([FromRoute] Guid clientCode, CancellationToken cancellationToken)
         {
             var client = await _repository.GetClient(clientCode);
 
@@ -30,7 +30,7 @@ namespace CarrBnk.Financial.Controllers.V1
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
         {
             var client = await _repository.GetClients();
 
@@ -38,7 +38,7 @@ namespace CarrBnk.Financial.Controllers.V1
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] ClientEntity clientEntity)
+        public async Task<IActionResult> Update([FromBody] FinancialPostings clientEntity, CancellationToken cancellationToken)
         {
             var client = await _mediator.Send(clientEntity);
 
@@ -46,7 +46,7 @@ namespace CarrBnk.Financial.Controllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> Insert([FromBody] ClientEntity clientEntity)
+        public async Task<IActionResult> Insert([FromBody] FinancialPostings clientEntity, CancellationToken cancellationToken)
         {
             var client = await _mediator.Send(clientEntity);
 
@@ -54,7 +54,7 @@ namespace CarrBnk.Financial.Controllers.V1
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Update([FromBody] Guid code)
+        public async Task<IActionResult> Update([FromBody] Guid code, CancellationToken cancellationToken)
         {
             var client = await _mediator.Send(code);
 

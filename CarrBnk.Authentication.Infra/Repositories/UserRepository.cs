@@ -1,18 +1,21 @@
-﻿using CarrBnk.Authentication.Core.Repositories;
+﻿using CarrBnk.Authentication.Core.Entities;
+using CarrBnk.Authentication.Core.Ports.Repositories;
 
 namespace Infra.Repositories
 {
     public class UserRepository : IUserRepository
     {
+        //TODO: Dado obtido da memória, o correto seria criar um CRUD para o MongoDb, não foi feito pois não é o foco do projeto.
         public async Task<User> Get(string username, string password)
         {
             var users = new List<User>
             {
-                new User { Id = 1, Username = "teste1", Password = "teste1", Role = "manager" },
-                new User { Id = 2, Username = "teste2", Password = "teste2", Role = "employee" }
+                new User { Id = 1, Username = "teste", Password = "passwd", Role = "manager" },
             };
 
-            return users.FirstOrDefault(x => x.Username.ToLower() == username.ToLower() && x.Password == x.Password);
+            await Task.Yield();
+
+            return users.FirstOrDefault(x => x.Username.ToLower() == username.ToLower() && x.Password == x.Password) ?? new User();
         }
     }
 }

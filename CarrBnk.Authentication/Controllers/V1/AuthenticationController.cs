@@ -1,4 +1,7 @@
-﻿using CarrBnk.Authentication.Dtos.Requests;
+﻿using CarrBnk.Authentication.Core.Ports.Repositories;
+using CarrBnk.Authentication.Dtos.Requests;
+using CarrBnk.Authentication.Dtos.Responses;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarrBnk.Authentication.Controllers.V1
@@ -8,11 +11,11 @@ namespace CarrBnk.Authentication.Controllers.V1
     [ApiVersion("1.0")]
     public class AuthenticationController : ControllerBase
     {
-        private readonly ITokenService _tokenService;
+        private readonly IMediator _mediator;
         private readonly IUserRepository _userRepository;
-        public AuthenticationController(ITokenService tokenService, IUserRepository userRepository)
+        public AuthenticationController(IMediator mediator, IUserRepository userRepository)
         {
-            _tokenService = tokenService;
+            _mediator = mediator;
             _userRepository = userRepository;
         }
 
@@ -20,25 +23,14 @@ namespace CarrBnk.Authentication.Controllers.V1
         [Route("login")]
         public async Task<ActionResult<dynamic>> Authenticate([FromBody] LoginRequest request)
         {
-            // Recupera o usuário
-            var user = _userRepository.Get(request.UserName, request.Password);
+            var user = await _userRepository.Get(request.UserName, request.Password);
 
-            // Verifica se o usuário existe
-            if (user == null)
+            if (user == null) //TODO: Melhorar mensagem de erro.
                 return NotFound(new { message = "Usuário ou senha inválidos" });
 
-            // Gera o Token
-            var token = await _tokenService.GenerateToken(user);
+            var token = await _mediator.Send(user);
 
-            // Oculta a senha
-            user.Password = "";
-
-            // Retorna os dados
-            return new
-            {
-                user,
-                token
-            };
+            return new LoginResponse(user.Username, token);
         }
     }
 }

@@ -9,9 +9,11 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CarrBnk.Financial.Core\CarrBnk.Financial.Core.csproj" />
     <ProjectReference Include="..\Core\CarrBnk.Financial.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Context\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
