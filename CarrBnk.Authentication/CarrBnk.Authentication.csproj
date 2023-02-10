@@ -15,12 +15,6 @@
     <ProjectReference Include="..\CarrBnk.Authentication.Core\CarrBnk.Authentication.Core.csproj" />
     <ProjectReference Include="..\CarrBnk.Authentication.Infra\CarrBnk.Authentication.Infra.csproj" />
     <ProjectReference Include="..\CarrBnk.BaseConfiguration\CarrBnk.BaseConfiguration.csproj" />
-    <ProjectReference Include="..\Financial.Authentication.Core\CarrBnk.Authentication.Core.csproj" />
-    <ProjectReference Include="..\Financial.Authentication.Infra\CarrBnk.Authentication.Infra.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Configurations\" />
   </ItemGroup>
 
 </Project>

@@ -1,13 +1,14 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace CarrBnk.BaseConfiguration.Configurations
 {
     public static class MediatrConfiguration
     {
-        public static void AddMediatrConfiguration<T>(this IServiceCollection services)
+        public static void AddMediatrConfiguration(this IServiceCollection services)
         {
-            services.AddMediatR(typeof(T));
+            services.AddMediatR(Assembly.GetExecutingAssembly());
         }
     }
 }

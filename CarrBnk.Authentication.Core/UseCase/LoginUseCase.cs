@@ -5,7 +5,7 @@ using MediatR;
 
 namespace CarrBnk.Authentication.Core.UseCase
 {
-    public class LoginUseCase : IRequestHandler<LoginUseCaseRequest, string>
+    public class LoginUseCase : IRequestHandler<LoginUseCaseRequest, LoginUseCaseResponse>
     {
         private readonly ITokenService _tokenService;
         private readonly IUserRepository _userRepository;
@@ -16,18 +16,17 @@ namespace CarrBnk.Authentication.Core.UseCase
             _userRepository = userRepository;
         }
 
-        public async Task<string> Handle(LoginUseCaseRequest request, CancellationToken cancellationToken)
+        public async Task<LoginUseCaseResponse> Handle(LoginUseCaseRequest request, CancellationToken cancellationToken)
         {
-            //TODO: Fazer tratamento de erro para o request
+            //TODO: Fazer tratamento de erro simples para o request
 
             var user = await _userRepository.Get(request.UserName, request.Password);
 
-            if (user == null)
-            {
-                return string.Empty; //TODO: Fazer tratamento de erro
-            }
+            if (user == null) return null; //TODO: Fazer tratamento de erro simples
 
-            return await _tokenService.GetToken(user);
+            var token = await _tokenService.GetToken(user);
+
+            return new LoginUseCaseResponse(user.Username, user.Role, token);
         }
     }
 }

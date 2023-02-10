@@ -2,6 +2,7 @@ using App.Configurations;
 using CarrBnk.BaseConfiguration.Configurations;
 using CarrBnk.BaseConfiguration.Middlewares;
 using CarrBnk.Financial.Configurations;
+using CarrBnk.Redis.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApiVersionConfiguration();
-builder.Services.AddMediatrConfiguration<Program>();
+builder.Services.AddMediatrConfiguration();
 builder.Services.AddSwaggerConfiguration(builder.Configuration);
 builder.Services.AddLogging();
 builder.Services.AddAutomapperConfiguration();

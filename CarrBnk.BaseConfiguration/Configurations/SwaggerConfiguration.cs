@@ -10,7 +10,7 @@ namespace CarrBnk.BaseConfiguration.Configurations
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc(configuration["App.Version"], new OpenApiInfo { Title = configuration["App.Title"], Version = configuration["App.Version"] });
+                c.SwaggerDoc(configuration["App:Version"], new OpenApiInfo { Title = configuration["App:Title"], Version = configuration["App:Version"] });
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
