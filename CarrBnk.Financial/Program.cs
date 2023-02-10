@@ -20,6 +20,7 @@ builder.Services.AddJwtConfiguration(builder.Configuration);
 builder.Services.AddMongoConfiguration(builder.Configuration);
 builder.Services.AddRepoConfiguration();
 builder.Services.AddRedisConfiguration(builder.Configuration);
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 var app = builder.Build();
 

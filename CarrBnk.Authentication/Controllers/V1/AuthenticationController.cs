@@ -1,6 +1,6 @@
-﻿using CarrBnk.Authentication.Core.Ports.Repositories;
-using CarrBnk.Authentication.Core.UseCase.Dtos;
+﻿using CarrBnk.Authentication.Core.UseCase.Dtos;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarrBnk.Authentication.Controllers.V1
@@ -18,11 +18,16 @@ namespace CarrBnk.Authentication.Controllers.V1
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody] LoginUseCaseRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginUseCaseRequest request, CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(request);
+            var response = await _mediator.Send(request, cancellationToken);
 
             return Ok(response);
         }
+
+        [Authorize]
+        [HttpGet]
+        [Route("teste")]
+        public IActionResult Teste() => Ok("voltou!");
     }
 }

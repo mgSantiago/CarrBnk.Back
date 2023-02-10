@@ -1,6 +1,10 @@
+using CarrBnk.Authentication.Core.UseCase;
+using CarrBnk.Authentication.Core.UseCase.Dtos;
 using CarrBnk.Authentication.Infra.Configurations;
 using CarrBnk.BaseConfiguration.Configurations;
 using CarrBnk.BaseConfiguration.Middlewares;
+using MediatR;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +18,8 @@ builder.Services.AddHealthChecks();
 builder.Services.AddRepositoriesConfiguration();
 builder.Services.AddAuthenticationConfiguration(builder.Configuration);
 builder.Services.AddServicesConfiguration();
-builder.Services.AddMediatrConfiguration();
-//builder.Services.AddMediatR(typeof(LoginUseCaseRequest).Assembly);
+builder.Services.AddMediatR(typeof(LoginUseCase));
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 var app = builder.Build();
 

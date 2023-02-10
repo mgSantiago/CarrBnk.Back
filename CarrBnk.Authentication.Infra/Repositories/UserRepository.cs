@@ -10,12 +10,12 @@ namespace CarrBnk.Authentication.Infra.Repositories
         {
             var users = new List<User>
             {
-                new User { Id = 1, Username = "teste", Password = "passwd", Role = "manager" },
+                new User(1, "teste", "passwd", "manager")
             };
 
             await Task.Yield();
 
-            return users.FirstOrDefault(x => x.Username.ToLower() == username.ToLower() && x.Password == x.Password) ?? new User();
+            return users.FirstOrDefault(x => x.Username.ToLower() == username.ToLower() && x.Password == x.Password);
         }
     }
 }
