@@ -1,7 +1,6 @@
+using CarrBnk.Authentication.Infra.Configurations;
 using CarrBnk.BaseConfiguration.Configurations;
 using CarrBnk.BaseConfiguration.Middlewares;
-using MediatR;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +11,11 @@ builder.Services.AddLogging();
 builder.Services.AddApiVersionConfiguration();
 builder.Services.AddSwaggerConfiguration(builder.Configuration);
 builder.Services.AddHealthChecks();
+builder.Services.AddRepositoriesConfiguration();
+builder.Services.AddAuthenticationConfiguration(builder.Configuration);
+builder.Services.AddServicesConfiguration();
 builder.Services.AddMediatrConfiguration();
+//builder.Services.AddMediatR(typeof(LoginUseCaseRequest).Assembly);
 
 var app = builder.Build();
 

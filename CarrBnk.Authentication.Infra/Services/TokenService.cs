@@ -1,20 +1,21 @@
 ﻿using CarrBnk.Authentication.Core.Entities;
 using CarrBnk.Authentication.Core.Ports.Services.Interfaces;
-using Infra.Settings;
+using CarrBnk.Authentication.Infra.Settings;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace CarrBnk.Authentication.Core.Ports.Services
+namespace CarrBnk.Authentication.Infra.Services
 {
     public class TokenService : ITokenService
     {
         private readonly AuthenticationSettings _settings;
 
-        public TokenService(AuthenticationSettings settings)
+        public TokenService(IOptionsMonitor<AuthenticationSettings> settings)
         {
-            _settings = settings;
+            _settings = settings.CurrentValue;
         }
         public async Task<string> GetToken(User user)
         {

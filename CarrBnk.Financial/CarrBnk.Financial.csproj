@@ -20,10 +20,4 @@
     <ProjectReference Include="..\CarrBnk.Redis\CarrBnk.Redis.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dtos\" />
-    <Folder Include="Dtos\Responses\" />
-    <Folder Include="Dtos\Requests\" />
-  </ItemGroup>
-
 </Project>

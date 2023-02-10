@@ -2,4 +2,8 @@
 
 namespace CarrBnk.Authentication.Core.UseCase.Dtos;
 
-public record LoginUseCaseRequest(string UserName, string Password) : IRequest<LoginUseCaseResponse>;
+public class LoginUseCaseRequest : IRequest<LoginUseCaseResponse>
+{
+    public string UserName { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
+}

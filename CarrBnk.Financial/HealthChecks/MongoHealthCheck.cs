@@ -11,11 +11,11 @@ namespace CarrBnk.Financial.HealthChecks
         private readonly IMongoDatabase _db;
         public readonly MongoClient _mongoClient;
 
-        public MongoHealthCheck(IOptions<MongoSettings> configuration)
+        public MongoHealthCheck(IOptionsMonitor<MongoSettings> configuration)
         {
-            _mongoClient = new MongoClient(configuration.Value.ConnectionString);
+            _mongoClient = new MongoClient(configuration.CurrentValue.ConnectionString);
 
-            _db = _mongoClient.GetDatabase(configuration.Value.DatabaseName);
+            _db = _mongoClient.GetDatabase(configuration.CurrentValue.DatabaseName);
         }
 
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)

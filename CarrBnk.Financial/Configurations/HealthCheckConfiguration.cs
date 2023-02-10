@@ -1,4 +1,5 @@
 ﻿using CarrBnk.Financial.HealthChecks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CarrBnk.Financial.Configurations
 {

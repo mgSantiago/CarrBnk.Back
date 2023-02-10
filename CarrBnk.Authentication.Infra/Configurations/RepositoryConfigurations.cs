@@ -1,7 +1,8 @@
 ﻿using CarrBnk.Authentication.Core.Ports.Repositories;
-using Infra.Repositories;
+using CarrBnk.Authentication.Infra.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace CarrBnk.Authentication.Configurations
+namespace CarrBnk.Authentication.Infra.Configurations
 {
     public static class RepositoryConfigurations
     {

@@ -1,7 +1,7 @@
 ﻿using CarrBnk.Authentication.Core.Entities;
 using CarrBnk.Authentication.Core.Ports.Repositories;
 
-namespace Infra.Repositories
+namespace CarrBnk.Authentication.Infra.Repositories
 {
     public class UserRepository : IUserRepository
     {
