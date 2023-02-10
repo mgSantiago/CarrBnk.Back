@@ -18,6 +18,7 @@ builder.Services.AddHealthCheckConfiguration();
 builder.Services.AddJwtConfiguration(builder.Configuration);
 builder.Services.AddMongoConfiguration(builder.Configuration);
 builder.Services.AddRepoConfiguration();
+builder.Services.AddRedisConfiguration(builder.Configuration);
 
 var app = builder.Build();
 
