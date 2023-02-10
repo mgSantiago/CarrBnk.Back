@@ -1,5 +1,5 @@
 ﻿using CarrBnk.Financial.Infra.Settings;
-using Core.Entities;
+using Infra.Models;
 using MongoDB.Driver;
 
 namespace CarrBnk.Financial.Infra.Context
@@ -15,6 +15,6 @@ namespace CarrBnk.Financial.Infra.Context
             _mongoDataBase = GetDatabase(mongoSettings.DatabaseName);
         }
 
-        public IMongoCollection<FinancialPostings> FinancialPostings() => _mongoDataBase.GetCollection<FinancialPostings>(_mongoSettings.FinancialPostingsCollectionName);
+        public IMongoCollection<FinancialPostingModel> FinancialPostings() => _mongoDataBase.GetCollection<FinancialPostingModel>(_mongoSettings.FinancialPostingsCollectionName);
     }
 }

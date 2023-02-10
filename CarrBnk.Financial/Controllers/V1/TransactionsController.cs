@@ -1,5 +1,5 @@
-﻿using Core.Entities;
-using Core.Repositories;
+﻿using CarrBnk.Financial.Core.Repositories;
+using Core.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +13,8 @@ namespace CarrBnk.Financial.Controllers.V1
     public class TransactionsController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IFinancialPostingsRepository _repository;
 
-        public TransactionsController(IMediator mediator, IFinancialPostingsRepository repository)
+        public TransactionsController(IMediator mediator)
         {
             _mediator = mediator;
             _repository = repository;
@@ -24,23 +23,7 @@ namespace CarrBnk.Financial.Controllers.V1
         [HttpGet("{clientCode}")]
         public async Task<IActionResult> Get([FromRoute] Guid clientCode, CancellationToken cancellationToken)
         {
-            var client = await _repository.GetClient(clientCode);
-
-            return Ok(client);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
-        {
-            var client = await _repository.GetClients();
-
-            return Ok(client);
-        }
-
-        [HttpPut]
-        public async Task<IActionResult> Update([FromBody] FinancialPostings clientEntity, CancellationToken cancellationToken)
-        {
-            var client = await _mediator.Send(clientEntity);
+            var client = await _repository.GetDailyFinancialMovements(clientCode);
 
             return Ok(client);
         }

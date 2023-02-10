@@ -1,6 +1,5 @@
 ﻿using CarrBnk.Financial.Infra.Context;
 using CarrBnk.Financial.Infra.Settings;
-using MongoDB.Driver;
 
 namespace CarrBnk.Financial.Configurations
 {
@@ -10,6 +9,7 @@ namespace CarrBnk.Financial.Configurations
         {
             var mongoSettings = configuration.GetSection("FinancialDatabase").Get<MongoSettings>();
 
+            services.Configure<MongoSettings>(configuration.GetSection("FinancialDatabase"));
             services.AddSingleton<IFinancialMongoClient>(k => new FinancialMongoClient(mongoSettings));
         }
     }
