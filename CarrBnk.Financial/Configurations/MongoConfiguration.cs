@@ -3,9 +3,9 @@ using CarrBnk.Financial.Infra.Settings;
 
 namespace CarrBnk.Financial.Configurations
 {
-    public static class MongoDbConfiguration
+    public static class MongoConfiguration
     {
-        public static void AddServicesConfiguration(this IServiceCollection services, IConfiguration configuration)
+        public static void AddMongoConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             var mongoSettings = configuration.GetSection("FinancialDatabase").Get<MongoSettings>();
 

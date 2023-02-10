@@ -6,9 +6,9 @@ namespace App.Configurations
     {
         public static void AddAutomapperConfiguration(this IServiceCollection services)
         {
+            //TODO: Validar se vou precisar mesmo do Automapper
             var config = new MapperConfiguration(cfg => {
-                    cfg.CreateMap<ClientEntity, ClientModel>();
-                    cfg.CreateMap<ClientModel, ClientEntity>();
+                    cfg.CreateMap<string, string>();
                 }
             );
 

@@ -1,5 +1,4 @@
-﻿using CarrBnk.Financial.Core.Repositories;
-using Core.Entities;
+﻿using Core.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,13 +16,12 @@ namespace CarrBnk.Financial.Controllers.V1
         public TransactionsController(IMediator mediator)
         {
             _mediator = mediator;
-            _repository = repository;
         }
 
         [HttpGet("{clientCode}")]
         public async Task<IActionResult> Get([FromRoute] Guid clientCode, CancellationToken cancellationToken)
         {
-            var client = await _repository.GetDailyFinancialMovements(clientCode);
+            var client = await _mediator.Send(clientCode);
 
             return Ok(client);
         }

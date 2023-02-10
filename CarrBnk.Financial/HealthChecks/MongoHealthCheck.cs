@@ -1,6 +1,7 @@
 ﻿using CarrBnk.Financial.Infra.Settings;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace CarrBnk.Financial.HealthChecks
@@ -15,12 +16,35 @@ namespace CarrBnk.Financial.HealthChecks
             _mongoClient = new MongoClient(configuration.Value.ConnectionString);
 
             _db = _mongoClient.GetDatabase(configuration.Value.DatabaseName);
-
         }
 
-        public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
+        public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+
+            var healthCheckResultHealthy = await CheckMongoDBConnectionAsync();
+
+
+            if (healthCheckResultHealthy)
+            {
+                return HealthCheckResult.Healthy("MongoDB health check success");
+            }
+
+            return HealthCheckResult.Unhealthy("MongoDB health check failure");
+        }
+
+        private async Task<bool> CheckMongoDBConnectionAsync()
+        {
+            try
+            {
+                await _db.RunCommandAsync((Command<BsonDocument>)"{ping:1}");
+            }
+
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

@@ -1,14 +1,13 @@
-﻿using AutoMapper;
+﻿using CarrBnk.Financial.HealthChecks;
 
 namespace CarrBnk.Financial.Configurations
 {
     public static class HealthCheckConfiguration
     {
-        public static void AddHealthCheckConfiguration(this IServiceCollection services, IConfiguration configuration)
+        public static void AddHealthCheckConfiguration(this IServiceCollection services)
         {
             services.AddHealthChecks()
-                .AddMongoDb();
-
+                .AddCheck<MongoHealthCheck>("MongoDBConnectionCheck");
         }
     }
 }

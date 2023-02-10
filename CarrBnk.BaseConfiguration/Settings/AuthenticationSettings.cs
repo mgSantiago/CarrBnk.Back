@@ -1,8 +1,8 @@
-﻿namespace App.Settings
+﻿namespace CarrBnk.BaseConfiguration.Settings
 {
-    public class AuthenticationSettings
+    public struct AuthenticationSettings
     {
-        public static string Key = "JwtAuthentication";
+        public const string Key = "JwtAuthentication";
         public string Secret { get; set; }
         public string Issuer { get; set; }
         public int ExpirationTime { get; set; }

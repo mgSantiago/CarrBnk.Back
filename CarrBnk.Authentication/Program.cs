@@ -6,8 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddMediatrConfiguration<Program>();
 builder.Services.AddLogging();
+builder.Services.AddApiVersionConfiguration();
+builder.Services.AddMediatrConfiguration<Program>();
 builder.Services.AddSwaggerConfiguration(builder.Configuration);
 
 var app = builder.Build();
