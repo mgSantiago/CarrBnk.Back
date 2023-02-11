@@ -27,7 +27,7 @@ namespace CarrBnk.Authentication.Controllers.V1
 
         [Authorize]
         [HttpGet]
-        [Route("teste")]
-        public IActionResult Teste() => Ok("voltou!");
+        [Route("checkauth")]
+        public IActionResult CheckAuth() => Ok();
     }
 }

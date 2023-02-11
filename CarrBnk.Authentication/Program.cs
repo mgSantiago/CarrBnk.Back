@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddLogging();
+builder.Services.AddCors();
 builder.Services.AddApiVersionConfiguration();
 builder.Services.AddSwaggerConfiguration(builder.Configuration);
 builder.Services.AddHealthChecks();
@@ -34,6 +35,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors(k => k.WithOrigins("http://carrbnk.com").AllowAnyMethod().AllowAnyHeader());
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseMiddleware(typeof(ErrorHandlingMiddleware));
