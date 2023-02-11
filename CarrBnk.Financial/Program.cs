@@ -3,6 +3,7 @@ using CarrBnk.BaseConfiguration.Configurations;
 using CarrBnk.BaseConfiguration.Middlewares;
 using CarrBnk.Financial.Configurations;
 using CarrBnk.Financial.Infra.Configurations;
+using CarrBnk.RabbitMq.Configurations;
 using CarrBnk.Redis.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,7 @@ builder.Services.AddMongoConfiguration(builder.Configuration);
 builder.Services.AddRepoConfiguration();
 builder.Services.AddRedisConfiguration(builder.Configuration);
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
+builder.Services.AddRabbitMqConfiguration();
 
 var app = builder.Build();
 

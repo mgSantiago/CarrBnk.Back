@@ -8,3 +8,6 @@ Login: teste
 Senha: passwd
 
 # Falar do motivo de ter somente três camadas
+
+Acesso ao RabbitMq
+http://localhost:15672/

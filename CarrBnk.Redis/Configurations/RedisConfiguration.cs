@@ -9,7 +9,7 @@ namespace CarrBnk.Redis.Configurations
     {
         public static void AddRedisConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton<IRedisConnector>(k => new RedisConnector(configuration.GetConnectionString("Redis")));
+            services.AddSingleton<IRedisConnector>(k => new RedisConnector(configuration.GetConnectionString("Redis") ?? string.Empty));
             services.AddScoped<ICacheService, CacheService>();
         }
     }
