@@ -2,6 +2,7 @@ using App.Configurations;
 using CarrBnk.BaseConfiguration.Configurations;
 using CarrBnk.BaseConfiguration.Middlewares;
 using CarrBnk.Financial.Configurations;
+using CarrBnk.Financial.Infra.Configurations;
 using CarrBnk.Redis.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);

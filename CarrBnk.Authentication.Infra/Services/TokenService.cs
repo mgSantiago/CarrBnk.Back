@@ -1,5 +1,5 @@
 ﻿using CarrBnk.Authentication.Core.Entities;
-using CarrBnk.Authentication.Core.Ports.Services.Interfaces;
+using CarrBnk.Authentication.Core.Ports.Services;
 using CarrBnk.Authentication.Infra.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

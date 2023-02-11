@@ -1,4 +1,4 @@
-﻿using CarrBnk.Authentication.Core.Ports.Services.Interfaces;
+﻿using CarrBnk.Authentication.Core.Ports.Services;
 using CarrBnk.Authentication.Infra.Services;
 using Microsoft.Extensions.DependencyInjection;
 

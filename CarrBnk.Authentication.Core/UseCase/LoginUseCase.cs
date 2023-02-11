@@ -1,5 +1,5 @@
 ﻿using CarrBnk.Authentication.Core.Ports.Repositories;
-using CarrBnk.Authentication.Core.Ports.Services.Interfaces;
+using CarrBnk.Authentication.Core.Ports.Services;
 using CarrBnk.Authentication.Core.UseCase.Dtos;
 using MediatR;
 

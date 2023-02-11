@@ -1,4 +1,4 @@
-﻿using CarrBnk.Financial.Core.Repositories;
+﻿using CarrBnk.Financial.Core.Ports.Repositories;
 using CarrBnk.Financial.Infra.Context;
 using Core.Entities;
 using Infra.Models;

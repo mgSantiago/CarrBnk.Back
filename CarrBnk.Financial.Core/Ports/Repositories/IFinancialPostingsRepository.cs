@@ -1,6 +1,6 @@
 ﻿using Core.Entities;
 
-namespace CarrBnk.Financial.Core.Repositories
+namespace CarrBnk.Financial.Core.Ports.Repositories
 {
     public interface IFinancialPostingsRepository
     {

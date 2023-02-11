@@ -1,6 +1,6 @@
 ﻿using CarrBnk.Authentication.Core.Entities;
 
-namespace CarrBnk.Authentication.Core.Ports.Services.Interfaces
+namespace CarrBnk.Authentication.Core.Ports.Services
 {
     public interface ITokenService
     {
