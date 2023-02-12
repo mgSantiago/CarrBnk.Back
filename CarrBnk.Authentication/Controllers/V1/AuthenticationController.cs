@@ -18,6 +18,9 @@ namespace CarrBnk.Authentication.Controllers.V1
 
         [HttpPost]
         [Route("login")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(LoginUseCaseResponse))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Login([FromBody] LoginUseCaseRequest request, CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(request, cancellationToken);
@@ -28,6 +31,7 @@ namespace CarrBnk.Authentication.Controllers.V1
         [Authorize]
         [HttpGet]
         [Route("checkauth")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult CheckAuth() => Ok();
     }
 }
