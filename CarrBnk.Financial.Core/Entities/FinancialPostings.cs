@@ -4,9 +4,9 @@ namespace Core.Entities
 {
     public class FinancialPostings
     {
-        public FinancialPostings(string? code, decimal value, FinancialPostingType financialPostingType, string description, DateTime creationDate)
+        public FinancialPostings(string? code, decimal value, FinancialPostingType financialPostingType, string description, DateTime? creationDate)
         {
-            Code = code;
+            Code = code ?? string.Empty;
             Value = value;
             FinancialPostingType = financialPostingType;
             Description = description;
@@ -17,6 +17,6 @@ namespace Core.Entities
         public decimal Value { get; private set; }
         public FinancialPostingType FinancialPostingType { get; private set; }
         public string Description { get; private set; }
-        public DateTime CreationDate { get; private set; }
+        public DateTime? CreationDate { get; private set; }
     }
 }

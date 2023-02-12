@@ -6,13 +6,14 @@ namespace Infra.Models
 {
     public record FinancialPostingModel
     {
-        public FinancialPostingModel(ObjectId id, decimal value, FinancialPostingType financialPostingType, string description, DateTime creationDate)
+        public FinancialPostingModel(ObjectId id, decimal value, FinancialPostingType financialPostingType, string description, DateTime? creationDate)
         {
             Id = id;
             Value = value;
             FinancialPostingType = financialPostingType;
             Description = description;
             CreationDate = creationDate;
+            UpdatedDate = DateTime.UtcNow;
         }
 
         [BsonId]
@@ -21,7 +22,7 @@ namespace Infra.Models
         public decimal Value { get; private set; }
         public FinancialPostingType FinancialPostingType { get; private set; }
         public string Description { get; private set; } = string.Empty;
-        public DateTime CreationDate { get; private set; }
-
+        public DateTime? CreationDate { get; private set; }
+        public DateTime UpdatedDate { get; private set; }
     }
 }

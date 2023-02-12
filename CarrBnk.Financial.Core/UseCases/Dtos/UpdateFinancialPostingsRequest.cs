@@ -1,10 +1,11 @@
 ﻿using CarrBnk.Financial.Core.Enums;
 using MediatR;
 
-namespace CarrBnk.Financial.Core.UseCases.CreateFinancialPostings.Dtos
+namespace CarrBnk.Financial.Core.UseCases.Dtos
 {
-    public class CreateFinancialPostingsRequest : IRequest<string>
+    public class UpdateFinancialPostingsRequest : IRequest<bool>
     {
+        public string Code { get; set; } = string.Empty;
         public decimal Value { get; set; }
         public FinancialPostingType FinancialPostingType { get; set; }
         public string Description { get; set; } = string.Empty;

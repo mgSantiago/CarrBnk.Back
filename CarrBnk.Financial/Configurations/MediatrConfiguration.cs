@@ -1,4 +1,4 @@
-﻿using CarrBnk.Financial.Core.UseCases.CreateFinancialPostings;
+﻿using CarrBnk.Financial.Core.UseCases;
 using MediatR;
 
 namespace CarrBnk.Financial.Configurations

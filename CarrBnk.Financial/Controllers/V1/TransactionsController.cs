@@ -1,4 +1,4 @@
-﻿using CarrBnk.Financial.Core.UseCases.CreateFinancialPostings.Dtos;
+﻿using CarrBnk.Financial.Core.UseCases.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,17 +19,23 @@ namespace CarrBnk.Financial.Controllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> Insert([FromBody] CreateFinancialPostingsRequest financeFlow, CancellationToken cancellationToken)
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Insert([FromBody] CreateFinancialPostingsRequest request, CancellationToken cancellationToken)
         {
-            var success = await _mediator.Send(financeFlow, cancellationToken);
+            var success = await _mediator.Send(request, cancellationToken);
 
             return CreatedAtAction(nameof(Insert), success);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] Guid code, CancellationToken cancellationToken)
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(bool))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Update([FromBody] UpdateFinancialPostingsRequest request, CancellationToken cancellationToken)
         {
-            var success = await _mediator.Send(code, cancellationToken);
+            var success = await _mediator.Send(request, cancellationToken);
 
             return Ok(success);
         }

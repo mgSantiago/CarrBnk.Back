@@ -1,5 +1,5 @@
-﻿using CarrBnk.Financial.Core.UseCases.CreateFinancialPostings.Dtos;
-using CarrBnk.Financial.Core.UseCases.CreateFinancialPostings.Validations;
+﻿using CarrBnk.Financial.Core.UseCases.Dtos;
+using CarrBnk.Financial.Core.UseCases.Validations;
 using FluentValidation;
 
 namespace CarrBnk.Financial.Configurations
@@ -9,6 +9,7 @@ namespace CarrBnk.Financial.Configurations
         public static void AddLocalValidatorsConfiguration(this IServiceCollection services)
         {
             services.AddScoped<IValidator<CreateFinancialPostingsRequest>, CreateFinancialPostingsValidation>();
+            services.AddScoped<IValidator<UpdateFinancialPostingsRequest>, UpdateFinancialPostingsValidation>();
         }
     }
 }

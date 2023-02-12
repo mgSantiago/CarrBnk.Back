@@ -5,6 +5,7 @@ using Infra.Models;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Xml.Linq;
 
 namespace Infra.Repositories
 {
@@ -15,32 +16,46 @@ namespace Infra.Repositories
         {
             _financialMongoClient = financialMongoClient;
         }
-        public async Task<string> Insert(FinancialPostings financialPosting)
+        public async Task<string> Insert(FinancialPostings financialPosting, CancellationToken cancellationToken)
         {
             var objectId = ObjectId.GenerateNewId();
 
             await _financialMongoClient
                 .FinancialPostings()
-                .InsertOneAsync(new FinancialPostingModel(objectId, financialPosting.Value, financialPosting.FinancialPostingType, financialPosting.Description, financialPosting.CreationDate));
+                .InsertOneAsync(
+                    new FinancialPostingModel(objectId, financialPosting.Value, financialPosting.FinancialPostingType, financialPosting.Description, financialPosting.CreationDate),
+                    new InsertOneOptions(),
+                    cancellationToken
+                 );
 
             return objectId.ToString();
         }
 
-        public async Task<bool> Update(FinancialPostings financialPosting)
+        public async Task<bool> Update(FinancialPostings financialPosting, CancellationToken cancellationToken)
         {
+            var update = Builders<FinancialPostingModel>.Update
+                .Set(p => p.Value, financialPosting.Value)
+                .Set(p => p.FinancialPostingType, financialPosting.FinancialPostingType)
+                .Set(p => p.Description, financialPosting.Description)
+                .Set(p => p.UpdatedDate, DateTime.UtcNow);
+
             await _financialMongoClient
                 .FinancialPostings()
-                .ReplaceOneAsync(k => k.Id == ObjectId.Parse(financialPosting.Code),
-                    new FinancialPostingModel(ObjectId.Parse(financialPosting.Code), financialPosting.Value, financialPosting.FinancialPostingType, financialPosting.Description, financialPosting.CreationDate));
+                .UpdateOneAsync(
+                    k => k.Id == ObjectId.Parse(financialPosting.Code),
+                    update,
+                    new UpdateOptions(),
+                    cancellationToken
+                 );
 
             return true;
         }
 
-        public async Task<bool> Delete(string id)
+        public async Task<bool> Delete(string id, CancellationToken cancellationToken)
         {
             await _financialMongoClient
                .FinancialPostings()
-               .DeleteOneAsync(id);
+               .DeleteOneAsync(id, cancellationToken);
 
             return true;
         }
@@ -50,8 +65,8 @@ namespace Infra.Repositories
             return await _financialMongoClient
                 .FinancialPostings()
                 .AsQueryable()
-                .Where(k =>k.CreationDate.Date == dateTime.Date)
-                .Select(k => new FinancialPostings(k.Id.ToString(), k.Value, k.FinancialPostingType, k.Description, k.CreationDate))
+                .Where(k => k.CreationDate.Value.Date == dateTime.Date)
+                .Select(k => new FinancialPostings(k.Id.ToString(), k.Value, k.FinancialPostingType, k.Description, k.CreationDate.Value))
                 .ToListAsync();
         }
     }
