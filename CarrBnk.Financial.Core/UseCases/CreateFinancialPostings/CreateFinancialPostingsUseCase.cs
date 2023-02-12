@@ -5,7 +5,7 @@ using MediatR;
 
 namespace CarrBnk.Financial.Core.UseCases.CreateFinancialPostings
 {
-    public class CreateFinancialPostingsUseCase : IRequestHandler<CreateFinancialPostingsRequest, bool>
+    public class CreateFinancialPostingsUseCase : IRequestHandler<CreateFinancialPostingsRequest, string>
     {
         private readonly IFinancialPostingsRepository _repository;
 
@@ -14,13 +14,13 @@ namespace CarrBnk.Financial.Core.UseCases.CreateFinancialPostings
             _repository = repository;
         }
 
-        public async Task<bool> Handle(CreateFinancialPostingsRequest request, CancellationToken cancellationToken)
+        public async Task<string> Handle(CreateFinancialPostingsRequest request, CancellationToken cancellationToken)
         {
             var financialPosting = new FinancialPostings(null, request.Value, request.FinancialPostingType, request.Description, DateTime.UtcNow);
 
-            await _repository.Insert(financialPosting);
+            var code = await _repository.Insert(financialPosting);
 
-            return true;
+            return code;
         }
     }
 }

@@ -3,6 +3,7 @@ using CarrBnk.Financial.Infra.Context;
 using Core.Entities;
 using Infra.Models;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Infra.Repositories
@@ -14,21 +15,23 @@ namespace Infra.Repositories
         {
             _financialMongoClient = financialMongoClient;
         }
-        public async Task<bool> Insert(FinancialPostings financialPosting)
+        public async Task<string> Insert(FinancialPostings financialPosting)
         {
+            var objectId = ObjectId.GenerateNewId();
+
             await _financialMongoClient
                 .FinancialPostings()
-                .InsertOneAsync(new FinancialPostingModel(financialPosting.Code, financialPosting.Value, financialPosting.FinancialPostingType, financialPosting.Description, financialPosting.CreationDate));
+                .InsertOneAsync(new FinancialPostingModel(objectId, financialPosting.Value, financialPosting.FinancialPostingType, financialPosting.Description, financialPosting.CreationDate));
 
-            return true;
+            return objectId.ToString();
         }
 
         public async Task<bool> Update(FinancialPostings financialPosting)
         {
             await _financialMongoClient
                 .FinancialPostings()
-                .ReplaceOneAsync(k => k.Id == financialPosting.Code,
-                    new FinancialPostingModel(financialPosting.Code, financialPosting.Value, financialPosting.FinancialPostingType, financialPosting.Description, financialPosting.CreationDate));
+                .ReplaceOneAsync(k => k.Id == ObjectId.Parse(financialPosting.Code),
+                    new FinancialPostingModel(ObjectId.Parse(financialPosting.Code), financialPosting.Value, financialPosting.FinancialPostingType, financialPosting.Description, financialPosting.CreationDate));
 
             return true;
         }
@@ -48,7 +51,7 @@ namespace Infra.Repositories
                 .FinancialPostings()
                 .AsQueryable()
                 .Where(k =>k.CreationDate.Date == dateTime.Date)
-                .Select(k => new FinancialPostings(k.Id, k.Value, k.FinancialPostingType, k.Description, k.CreationDate))
+                .Select(k => new FinancialPostings(k.Id.ToString(), k.Value, k.FinancialPostingType, k.Description, k.CreationDate))
                 .ToListAsync();
         }
     }

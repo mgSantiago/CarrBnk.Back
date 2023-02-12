@@ -3,7 +3,7 @@ using MediatR;
 
 namespace CarrBnk.Financial.Core.UseCases.CreateFinancialPostings.Dtos
 {
-    public class CreateFinancialPostingsRequest : IRequest<bool>
+    public class CreateFinancialPostingsRequest : IRequest<string>
     {
         public decimal Value { get; set; }
         public FinancialPostingType FinancialPostingType { get; set; }

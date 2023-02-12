@@ -25,6 +25,7 @@ builder.Services.AddRedisConfiguration(builder.Configuration);
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddRabbitMqConfiguration(builder.Configuration);
 builder.Services.AddValidationConfiguration();
+builder.Services.AddLocalValidatorsConfiguration();
 
 var app = builder.Build();
 
