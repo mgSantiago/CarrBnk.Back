@@ -23,24 +23,30 @@ builder.Services.AddMongoConfiguration(builder.Configuration);
 builder.Services.AddRepoConfiguration();
 builder.Services.AddRedisConfiguration(builder.Configuration);
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
-builder.Services.AddRabbitMqConfiguration();
+builder.Services.AddRabbitMqConfiguration(builder.Configuration);
+builder.Services.AddValidationConfiguration();
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    });
 }
 
 app.UseHttpsRedirection();
 
+app.UseCors(k => k.WithOrigins("http://carrbnk.com").AllowAnyMethod().AllowAnyHeader());
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
-
-app.MapHealthChecks("/healthy");
-
 app.UseMiddleware(typeof(ErrorHandlingMiddleware));
+
+app.MapHealthChecks("/health");
+
+app.MapControllers();
 
 app.Run();

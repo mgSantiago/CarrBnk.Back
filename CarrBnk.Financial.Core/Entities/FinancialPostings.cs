@@ -6,7 +6,7 @@ namespace Core.Entities
     {
         public FinancialPostings(string? code, decimal value, FinancialPostingType financialPostingType, string description, DateTime creationDate)
         {
-            Code = code ?? string.Empty;
+            Code = code;
             Value = value;
             FinancialPostingType = financialPostingType;
             Description = description;

@@ -9,5 +9,8 @@ Senha: passwd
 
 # Falar do motivo de ter somente três camadas
 
-Acesso ao RabbitMq
+# Acesso ao RabbitMq
 http://localhost:15672/
+
+# Acesso ao MongoDb
+http://localhost:8081/

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CarrBnk.Financial.Core.UseCases.CreateFinancialPostings;
+using MediatR;
 
 namespace CarrBnk.Financial.Configurations
 {
@@ -6,7 +7,7 @@ namespace CarrBnk.Financial.Configurations
     {
         public static void AddMediatrConfiguration(this IServiceCollection services)
         {
-            //services.AddMediatR(typeof());
+            services.AddMediatR(typeof(CreateFinancialPostingsUseCase));
         }
     }
 }

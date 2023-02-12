@@ -2,6 +2,7 @@
 {
     public record MongoSettings
     {
+        public static readonly string Key = "FinancialDatabase";
         public string ConnectionString { get; set; } = null!;
 
         public string DatabaseName { get; set; } = null!;

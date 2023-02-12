@@ -1,7 +1,6 @@
 ﻿using CarrBnk.Financial.Core.Enums;
-using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
-using System.ComponentModel.DataAnnotations;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Infra.Models
 {

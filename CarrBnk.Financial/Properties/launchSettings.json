@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Cecam.Back": {
+    "CarrBnk": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

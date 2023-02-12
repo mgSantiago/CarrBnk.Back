@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System.Net;
 
 namespace CarrBnk.BaseConfiguration.Middlewares
 {
@@ -34,12 +34,18 @@ namespace CarrBnk.BaseConfiguration.Middlewares
 
             _logger.LogError(exception, "{Class} | Error | ErrorCode: {Code}", nameof(ErrorHandlingMiddleware), errorCode);
 
-            var statusCode = HttpStatusCode.InternalServerError;
+            var statusCode = GetStatusCode(exception);
 
             var result = JsonConvert.SerializeObject(new { error = $"Ocorreu um erro inesperado com o código identificador {errorCode}" });
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)statusCode;
             return context.Response.WriteAsync(result);
         }
+
+        private static int GetStatusCode(Exception exception) => exception switch
+        {
+            ValidationException => StatusCodes.Status400BadRequest,
+            _ => StatusCodes.Status500InternalServerError
+        };
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CarrBnk.Financial.Infra.Settings;
 using Infra.Models;
+using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
 namespace CarrBnk.Financial.Infra.Context
@@ -7,14 +8,14 @@ namespace CarrBnk.Financial.Infra.Context
     public class FinancialMongoClient : MongoClient, IFinancialMongoClient
     {
         private readonly IMongoDatabase _mongoDataBase;
-        private readonly MongoSettings _mongoSettings;
+        private readonly IOptionsMonitor<MongoSettings> _mongoSettings;
 
-        public FinancialMongoClient(MongoSettings mongoSettings) : base(mongoSettings.ConnectionString)
+        public FinancialMongoClient(IOptionsMonitor<MongoSettings> mongoSettings) : base(mongoSettings.CurrentValue.ConnectionString)
         {
             _mongoSettings = mongoSettings;
-            _mongoDataBase = GetDatabase(mongoSettings.DatabaseName);
+            _mongoDataBase = GetDatabase(mongoSettings.CurrentValue.DatabaseName);
         }
 
-        public IMongoCollection<FinancialPostingModel> FinancialPostings() => _mongoDataBase.GetCollection<FinancialPostingModel>(_mongoSettings.FinancialPostingsCollectionName);
+        public IMongoCollection<FinancialPostingModel> FinancialPostings() => _mongoDataBase.GetCollection<FinancialPostingModel>(_mongoSettings.CurrentValue.FinancialPostingsCollectionName);
     }
 }

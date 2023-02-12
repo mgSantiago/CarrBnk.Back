@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CarrBnk.RabbitMq.Settings;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using System.Text;
 
@@ -22,10 +24,10 @@ namespace CarrBnk.RabbitMq.Services
             }
         }
 
-        public PublisherService(ILogger<ConsumerService> logger, string connectionString)
+        public PublisherService(ILogger<ConsumerService> logger, IOptionsMonitor<RabbitMqSettings> rabbitMqSettings)
         {
             _logger = logger;
-            _connectionFactory = new ConnectionFactory { HostName = connectionString };
+            _connectionFactory = new ConnectionFactory { HostName = rabbitMqSettings.CurrentValue.ConnectionString };
         }
 
         public async Task Publish(string queue, string message)

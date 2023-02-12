@@ -1,5 +1,6 @@
-﻿using CarrBnk.RabbitMq.Registers;
+﻿using CarrBnk.RabbitMq.Settings;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -24,10 +25,10 @@ namespace CarrBnk.RabbitMq.Services
             }
         }
 
-        public ConsumerService(ILogger<ConsumerService> logger, string connectionString)
+        public ConsumerService(ILogger<ConsumerService> logger, IOptionsMonitor<RabbitMqSettings> rabbitMqSettings)
         {
             _logger = logger;
-            _connectionFactory = new ConnectionFactory { HostName = connectionString };
+            _connectionFactory = new ConnectionFactory { HostName = rabbitMqSettings.CurrentValue.ConnectionString };
         }
 
         public async Task RegisterConsumer(string queue, EventHandler<BasicDeliverEventArgs> received)
