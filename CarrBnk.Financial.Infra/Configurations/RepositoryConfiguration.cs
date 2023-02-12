@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CarrBnk.Financial.Infra.Configurations
 {
-    public static class ReporyConfiguration
+    public static class RepositoryConfiguration
     {
         public static void AddRepoConfiguration(this IServiceCollection services)
         {

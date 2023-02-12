@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using StackExchange.Redis;
 
-namespace CarrBnk.Financial.HealthChecks
+namespace CarrBnk.Financial.Report.HealthChecks
 {
     public class RedisHealthCheck : IHealthCheck
     {

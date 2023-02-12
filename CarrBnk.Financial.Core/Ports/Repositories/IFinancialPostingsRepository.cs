@@ -1,4 +1,4 @@
-﻿using Core.Entities;
+﻿using CarrBnk.Financial.Core.Entities;
 
 namespace CarrBnk.Financial.Core.Ports.Repositories
 {

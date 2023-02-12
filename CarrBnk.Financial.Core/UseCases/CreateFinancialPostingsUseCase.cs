@@ -1,6 +1,6 @@
-﻿using CarrBnk.Financial.Core.Ports.Repositories;
+﻿using CarrBnk.Financial.Core.Entities;
+using CarrBnk.Financial.Core.Ports.Repositories;
 using CarrBnk.Financial.Core.UseCases.Dtos;
-using Core.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
 

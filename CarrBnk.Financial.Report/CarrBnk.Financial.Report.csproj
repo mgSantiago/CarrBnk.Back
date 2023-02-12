@@ -15,9 +15,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CarrBnk.BaseConfiguration\CarrBnk.BaseConfiguration.csproj" />
-    <ProjectReference Include="..\CarrBnk.Financial.Core\CarrBnk.Financial.Core.csproj" />
-    <ProjectReference Include="..\CarrBnk.Financial.Infra\CarrBnk.Financial.Infra.csproj" />
+    <ProjectReference Include="..\CarrBnk.Financial.Report.Core\CarrBnk.Financial.Report.Core.csproj" />
+    <ProjectReference Include="..\CarrBnk.Financial.Report.Infra\CarrBnk.Financial.Report.Infra.csproj" />
     <ProjectReference Include="..\CarrBnk.RabbitMq\CarrBnk.RabbitMq.csproj" />
+    <ProjectReference Include="..\CarrBnk.Redis\CarrBnk.Redis.csproj" />
   </ItemGroup>
 
 </Project>

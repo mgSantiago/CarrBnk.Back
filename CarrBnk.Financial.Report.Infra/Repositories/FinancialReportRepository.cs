@@ -1,6 +1,6 @@
-﻿using CarrBnk.Financial.Core.Entities;
-using CarrBnk.Financial.Core.Ports.Repositories;
-using CarrBnk.Financial.Infra.Context;
+﻿using CarrBnk.Financial.Infra.Context;
+using CarrBnk.Financial.Report.Core.Entities;
+using CarrBnk.Financial.Report.Core.Ports.Repositories;
 using Infra.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -8,10 +8,10 @@ using MongoDB.Driver.Linq;
 
 namespace Infra.Repositories
 {
-    public class FinancialPostingsRepository : IFinancialPostingsRepository
+    public class FinancialReportRepository : IFinancialReportRepository
     {
         private readonly IFinancialMongoClient _financialMongoClient;
-        public FinancialPostingsRepository(IFinancialMongoClient financialMongoClient)
+        public FinancialReportRepository(IFinancialMongoClient financialMongoClient)
         {
             _financialMongoClient = financialMongoClient;
         }
@@ -22,7 +22,7 @@ namespace Infra.Repositories
             await _financialMongoClient
                 .FinancialPostings()
                 .InsertOneAsync(
-                    new FinancialPostingModel(objectId, financialPosting.Value, financialPosting.FinancialPostingType, financialPosting.Description, financialPosting.CreationDate),
+                    new FinancialReportModel(objectId, financialPosting.Value, financialPosting.FinancialPostingType, financialPosting.CreationDate),
                     new InsertOneOptions(),
                     cancellationToken
                  );
@@ -32,10 +32,9 @@ namespace Infra.Repositories
 
         public async Task<bool> Update(FinancialPostings financialPosting, CancellationToken cancellationToken)
         {
-            var update = Builders<FinancialPostingModel>.Update
+            var update = Builders<FinancialReportModel>.Update
                 .Set(p => p.Value, financialPosting.Value)
                 .Set(p => p.FinancialPostingType, financialPosting.FinancialPostingType)
-                .Set(p => p.Description, financialPosting.Description)
                 .Set(p => p.UpdatedDate, DateTime.UtcNow);
 
             await _financialMongoClient
@@ -50,22 +49,13 @@ namespace Infra.Repositories
             return true;
         }
 
-        public async Task<bool> Delete(string id, CancellationToken cancellationToken)
-        {
-            await _financialMongoClient
-               .FinancialPostings()
-               .DeleteOneAsync(id, cancellationToken);
-
-            return true;
-        }
-
-        public async Task<IEnumerable<FinancialPostings>> GetDailyFinancialMovements(DateTime dateTime)
+        public async Task<IEnumerable<FinancialPostings>> GetDailyFinancialMovements(DateTime date, CancellationToken cancellationToken)
         {
             return await _financialMongoClient
                 .FinancialPostings()
                 .AsQueryable()
-                .Where(k => k.CreationDate.Value.Date == dateTime.Date)
-                .Select(k => new FinancialPostings(k.Id.ToString(), k.Value, k.FinancialPostingType, k.Description, k.CreationDate.Value))
+                .Where(k => k.CreationDate.Value.Date == date.Date)
+                .Select(k => new FinancialPostings(k.Id.ToString(), k.Value, k.FinancialPostingType, k.CreationDate.Value))
                 .ToListAsync();
         }
     }

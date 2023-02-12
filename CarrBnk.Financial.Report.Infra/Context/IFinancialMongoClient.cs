@@ -5,6 +5,6 @@ namespace CarrBnk.Financial.Infra.Context
 {
     public interface IFinancialMongoClient
     {
-        public IMongoCollection<FinancialPostingModel> FinancialPostings();
+        public IMongoCollection<FinancialReportModel> FinancialPostings();
     }
 }
