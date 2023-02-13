@@ -1,12 +1,11 @@
 ﻿using CarrBnk.Financial.Core.Entities;
 using CarrBnk.Financial.Core.Ports.Repositories;
 using CarrBnk.Financial.Infra.Context;
-using Infra.Models;
+using CarrBnk.Financial.Infra.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 
-namespace Infra.Repositories
+namespace CarrBnk.Financial.Infra.Repositories
 {
     public class FinancialPostingsRepository : IFinancialPostingsRepository
     {
@@ -57,16 +56,6 @@ namespace Infra.Repositories
                .DeleteOneAsync(id, cancellationToken);
 
             return true;
-        }
-
-        public async Task<IEnumerable<FinancialPostings>> GetDailyFinancialMovements(DateTime dateTime)
-        {
-            return await _financialMongoClient
-                .FinancialPostings()
-                .AsQueryable()
-                .Where(k => k.CreationDate.Value.Date == dateTime.Date)
-                .Select(k => new FinancialPostings(k.Id.ToString(), k.Value, k.FinancialPostingType, k.Description, k.CreationDate.Value))
-                .ToListAsync();
         }
     }
 }

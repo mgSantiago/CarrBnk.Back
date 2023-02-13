@@ -1,5 +1,5 @@
-﻿using CarrBnk.Financial.Infra.Settings;
-using Infra.Models;
+﻿using CarrBnk.Financial.Infra.Models;
+using CarrBnk.Financial.Infra.Settings;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 

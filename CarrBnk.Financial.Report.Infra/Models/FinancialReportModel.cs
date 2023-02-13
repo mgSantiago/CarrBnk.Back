@@ -2,7 +2,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Infra.Models
+namespace CarrBnk.Financial.Report.Infra.Models
 {
     public record FinancialReportModel
     {

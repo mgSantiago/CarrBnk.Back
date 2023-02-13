@@ -15,7 +15,6 @@ builder.Services.AddApiVersionConfiguration();
 builder.Services.AddMediatrConfiguration();
 builder.Services.AddSwaggerConfiguration(builder.Configuration);
 builder.Services.AddLogging();
-builder.Services.AddAutomapperConfiguration();
 builder.Services.AddHealthCheckConfiguration();
 builder.Services.AddJwtConfiguration(builder.Configuration);
 builder.Services.AddMongoConfiguration(builder.Configuration);

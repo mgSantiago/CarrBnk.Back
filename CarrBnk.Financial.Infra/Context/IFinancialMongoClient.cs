@@ -1,4 +1,4 @@
-﻿using Infra.Models;
+﻿using CarrBnk.Financial.Infra.Models;
 using MongoDB.Driver;
 
 namespace CarrBnk.Financial.Infra.Context

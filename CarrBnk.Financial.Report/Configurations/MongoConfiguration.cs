@@ -1,5 +1,5 @@
-﻿using CarrBnk.Financial.Infra.Context;
-using CarrBnk.Financial.Infra.Settings;
+﻿using CarrBnk.Financial.Report.Infra.Context;
+using CarrBnk.Financial.Report.Infra.Settings;
 
 namespace CarrBnk.Financial.Report.Configurations
 {

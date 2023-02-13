@@ -1,5 +1,5 @@
 ﻿using CarrBnk.Financial.Report.Core.UseCases.Dtos;
-using CarrBnk.Financial.Report.Core.UseCases.Validations;
+using CarrBnk.Financial.Report.Core.UseCases.Validators;
 using FluentValidation;
 
 namespace CarrBnk.Financial.Report.Configurations
@@ -8,7 +8,7 @@ namespace CarrBnk.Financial.Report.Configurations
     {
         public static void AddLocalValidatorsConfiguration(this IServiceCollection services)
         {
-            services.AddScoped<IValidator<GetFinancialDailyReportRequest>, GetFinancialDailyReportValidation>();
+            services.AddScoped<IValidator<GetFinancialDailyReportRequest>, GetFinancialDailyReportValidator>();
         }
     }
 }

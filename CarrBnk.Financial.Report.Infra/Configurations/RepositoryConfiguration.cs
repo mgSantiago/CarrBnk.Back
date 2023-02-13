@@ -1,8 +1,8 @@
 ﻿using CarrBnk.Financial.Report.Core.Ports.Repositories;
-using Infra.Repositories;
+using CarrBnk.Financial.Report.Infra.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CarrBnk.Financial.Infra.Configurations
+namespace CarrBnk.Financial.Report.Infra.Configurations
 {
     public static class RepositoryConfiguration
     {

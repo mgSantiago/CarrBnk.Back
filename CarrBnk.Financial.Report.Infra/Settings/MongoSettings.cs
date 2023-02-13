@@ -1,4 +1,4 @@
-﻿namespace CarrBnk.Financial.Infra.Settings
+﻿namespace CarrBnk.Financial.Report.Infra.Settings
 {
     public record MongoSettings
     {

@@ -1,7 +1,7 @@
-﻿using Infra.Models;
+﻿using CarrBnk.Financial.Report.Infra.Models;
 using MongoDB.Driver;
 
-namespace CarrBnk.Financial.Infra.Context
+namespace CarrBnk.Financial.Report.Infra.Context
 {
     public interface IFinancialMongoClient
     {

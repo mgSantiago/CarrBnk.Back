@@ -7,6 +7,5 @@ namespace CarrBnk.Financial.Core.Ports.Repositories
         Task<string> Insert(FinancialPostings client, CancellationToken cancellationToken);
         Task<bool> Delete(string id, CancellationToken cancellationToken);
         Task<bool> Update(FinancialPostings financialPosting, CancellationToken cancellationToken);
-        Task<IEnumerable<FinancialPostings>> GetDailyFinancialMovements(DateTime dateTime);
     }
 }

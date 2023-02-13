@@ -1,4 +1,4 @@
-﻿using CarrBnk.Financial.Infra.Settings;
+﻿using CarrBnk.Financial.Report.Infra.Settings;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;

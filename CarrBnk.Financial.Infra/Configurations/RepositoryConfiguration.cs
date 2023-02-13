@@ -1,5 +1,5 @@
 ﻿using CarrBnk.Financial.Core.Ports.Repositories;
-using Infra.Repositories;
+using CarrBnk.Financial.Infra.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CarrBnk.Financial.Infra.Configurations

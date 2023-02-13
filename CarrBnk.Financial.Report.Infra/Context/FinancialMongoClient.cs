@@ -1,9 +1,9 @@
-﻿using CarrBnk.Financial.Infra.Settings;
-using Infra.Models;
+﻿using CarrBnk.Financial.Report.Infra.Models;
+using CarrBnk.Financial.Report.Infra.Settings;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
-namespace CarrBnk.Financial.Infra.Context
+namespace CarrBnk.Financial.Report.Infra.Context
 {
     public class FinancialMongoClient : MongoClient, IFinancialMongoClient
     {

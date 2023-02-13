@@ -1,12 +1,12 @@
-﻿using CarrBnk.Financial.Infra.Context;
-using CarrBnk.Financial.Report.Core.Entities;
+﻿using CarrBnk.Financial.Report.Core.Entities;
 using CarrBnk.Financial.Report.Core.Ports.Repositories;
-using Infra.Models;
+using CarrBnk.Financial.Report.Infra.Context;
+using CarrBnk.Financial.Report.Infra.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace Infra.Repositories
+namespace CarrBnk.Financial.Report.Infra.Repositories
 {
     public class FinancialReportRepository : IFinancialReportRepository
     {
