@@ -3,11 +3,22 @@ using CarrBnk.BaseConfiguration.Configurations;
 using CarrBnk.BaseConfiguration.Middlewares;
 using CarrBnk.Financial.Report.Configurations;
 using CarrBnk.Financial.Report.Infra.Configurations;
+using CarrBnk.Financial.Report.Infra.Consumers;
 using CarrBnk.RabbitMq.Configurations;
 using CarrBnk.Redis.Configurations;
 
-var builder = WebApplication.CreateBuilder(args);
+using IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((hostContext, services) =>
+    {
+        services.AddRabbitMqConfiguration(hostContext.Configuration);
+        services.AddLogging();
+        services.AddHostedService<FinancialPostingCreatedConsumer>();
+    })
+    .Build();
 
+await host.RunAsync();
+
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

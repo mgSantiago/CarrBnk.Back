@@ -4,6 +4,6 @@ namespace CarrBnk.RabbitMq.Services
 {
     public interface IConsumerService
     {
-        Task RegisterConsumer(string queue, EventHandler<BasicDeliverEventArgs> received);
+        void RegisterConsumer(string queue, EventHandler<BasicDeliverEventArgs> received);
     }
 }

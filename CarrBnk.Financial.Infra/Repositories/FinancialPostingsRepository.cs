@@ -14,9 +14,10 @@ namespace CarrBnk.Financial.Infra.Repositories
         {
             _financialMongoClient = financialMongoClient;
         }
-        public async Task<string> Insert(FinancialPostings financialPosting, CancellationToken cancellationToken)
+        public async Task Insert(FinancialPostings financialPosting, CancellationToken cancellationToken)
         {
             var objectId = ObjectId.GenerateNewId();
+            financialPosting.SetCode(objectId.ToString());
 
             await _financialMongoClient
                 .FinancialPostings()
@@ -24,9 +25,7 @@ namespace CarrBnk.Financial.Infra.Repositories
                     new FinancialPostingModel(objectId, financialPosting.Value, financialPosting.FinancialPostingType, financialPosting.Description, financialPosting.CreationDate),
                     new InsertOneOptions(),
                     cancellationToken
-                 );
-
-            return objectId.ToString();
+                 );            
         }
 
         public async Task<bool> Update(FinancialPostings financialPosting, CancellationToken cancellationToken)

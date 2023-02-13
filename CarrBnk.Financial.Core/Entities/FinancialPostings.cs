@@ -18,5 +18,10 @@ namespace CarrBnk.Financial.Core.Entities
         public FinancialPostingType FinancialPostingType { get; private set; }
         public string Description { get; private set; }
         public DateTime? CreationDate { get; private set; }
+
+        public void SetCode(string code)
+        {
+            Code = code ?? string.Empty;
+        }
     }
 }

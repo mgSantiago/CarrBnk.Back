@@ -31,7 +31,7 @@ namespace CarrBnk.RabbitMq.Services
             _connectionFactory = new ConnectionFactory { HostName = rabbitMqSettings.CurrentValue.ConnectionString };
         }
 
-        public async Task RegisterConsumer(string queue, EventHandler<BasicDeliverEventArgs> received)
+        public void RegisterConsumer(string queue, EventHandler<BasicDeliverEventArgs> received)
         {
             var channel = Connection.CreateModel();
 
@@ -55,8 +55,6 @@ namespace CarrBnk.RabbitMq.Services
             channel.BasicConsume(queue: queue,
                                  autoAck: true,
                                  consumer: consumer);
-
-            await Task.Yield();
         }
     }
 }

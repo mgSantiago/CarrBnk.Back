@@ -8,12 +8,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.19.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CarrBnk.Financial.Report.Core\CarrBnk.Financial.Report.Core.csproj" />
+    <ProjectReference Include="..\CarrBnk.RabbitMq\CarrBnk.RabbitMq.csproj" />
   </ItemGroup>
 
 </Project>
