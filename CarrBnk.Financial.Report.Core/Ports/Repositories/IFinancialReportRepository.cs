@@ -4,6 +4,6 @@ namespace CarrBnk.Financial.Report.Core.Ports.Repositories
 {
     public interface IFinancialReportRepository
     {
-        Task<IEnumerable<FinancialPostings>> GetDailyFinancialMovements(DateTime date, CancellationToken cancellationToken);
+        Task<IEnumerable<FinancialPostings>> GetDailyFinancialMovements(DateTime startOfDay, DateTime endOfDay, CancellationToken cancellationToken);
     }
 }

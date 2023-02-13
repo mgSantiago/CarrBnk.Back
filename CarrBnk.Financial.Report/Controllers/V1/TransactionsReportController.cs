@@ -22,7 +22,7 @@ namespace CarrBnk.Financial.Report.Controllers.V1
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Get([FromRoute] GetFinancialDailyReportRequest request, CancellationToken cancellationToken)
+        public async Task<IActionResult> Get([FromQuery] GetFinancialDailyReportRequest request, CancellationToken cancellationToken)
         {
             var success = await _mediator.Send(request, cancellationToken);
 

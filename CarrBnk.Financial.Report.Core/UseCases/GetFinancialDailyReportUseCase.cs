@@ -21,16 +21,19 @@ namespace CarrBnk.Financial.Report.Core.UseCases
         {
             _logger.LogInformation("{class} | Initializing", nameof(GetFinancialDailyReportUseCase));
 
-            var financialPostings = await _repository.GetDailyFinancialMovements(request.Date, cancellationToken);
+            var startOfDay = request.Date.Date;
+            var endOfDay = request.Date.Date.AddDays(1);
+
+            var financialPostings = await _repository.GetDailyFinancialMovements(startOfDay, endOfDay, cancellationToken);
 
             _logger.LogInformation("{class} | Created | Rows: {rows}", nameof(GetFinancialDailyReportUseCase), financialPostings.Count());
 
             var dailyConsolidation = financialPostings.Sum(k => k.GetRealValue());
-            var cashInFlowResult = financialPostings.Count(k => k.FinancialPostingType == FinancialPostingType.CashInFlow);
-            var cashOutFlowResult = financialPostings.Count(k => k.FinancialPostingType == FinancialPostingType.CashOutFlow);
-            var totalMovements = cashInFlowResult + cashOutFlowResult;
+            var cashInFlowMovements = financialPostings.Count(k => k.FinancialPostingType == FinancialPostingType.CashInFlow);
+            var cashOutFlowMovements = financialPostings.Count(k => k.FinancialPostingType == FinancialPostingType.CashOutFlow);
+            var totalMovements = cashInFlowMovements + cashOutFlowMovements;
 
-            return new GetFinancialDailyReportResult(dailyConsolidation, cashInFlowResult, cashOutFlowResult, totalMovements);
+            return new GetFinancialDailyReportResult(dailyConsolidation, cashInFlowMovements, cashOutFlowMovements, totalMovements);
         }
     }
 }

@@ -2,6 +2,7 @@ using App.Configurations;
 using CarrBnk.BaseConfiguration.Configurations;
 using CarrBnk.BaseConfiguration.Middlewares;
 using CarrBnk.Financial.Report.Configurations;
+using CarrBnk.Financial.Report.Infra.Configurations;
 using CarrBnk.RabbitMq.Configurations;
 using CarrBnk.Redis.Configurations;
 
@@ -23,6 +24,7 @@ builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddRabbitMqConfiguration(builder.Configuration);
 builder.Services.AddValidationConfiguration();
 builder.Services.AddLocalValidatorsConfiguration();
+builder.Services.AddRepoConfiguration();
 
 var app = builder.Build();
 
