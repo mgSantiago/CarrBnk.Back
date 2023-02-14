@@ -6,9 +6,9 @@ namespace CarrBnk.Financial.Report.Infra.Configurations
 {
     public static class RepositoryConfiguration
     {
-        public static void AddRepoConfiguration(this IServiceCollection services)
+        public static void AddRepositoryConfiguration(this IServiceCollection services)
         {
-            services.AddScoped<IFinancialReportRepository, FinancialReportRepository>();
+            services.AddSingleton<IFinancialReportRepository, FinancialReportRepository>();
         }
     }
 }

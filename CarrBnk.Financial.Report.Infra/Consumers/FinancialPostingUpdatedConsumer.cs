@@ -11,14 +11,14 @@ using System.Text;
 
 namespace CarrBnk.Financial.Report.Infra.Consumers
 {
-    public class FinancialPostingCreatedConsumer : BackgroundService
+    public class FinancialPostingUpdatedConsumer : BackgroundService
     {
         private readonly IConsumerService _consumerService;
-        private readonly ILogger<FinancialPostingCreatedConsumer> _logger;
+        private readonly ILogger<FinancialPostingUpdatedConsumer> _logger;
         private readonly IFinancialReportRepository _repository;
 
-        public FinancialPostingCreatedConsumer(IConsumerService consumerService, 
-                                            ILogger<FinancialPostingCreatedConsumer> logger,
+        public FinancialPostingUpdatedConsumer(IConsumerService consumerService, 
+                                            ILogger<FinancialPostingUpdatedConsumer> logger,
                                             IFinancialReportRepository repository)
         {
             _consumerService = consumerService;
@@ -28,26 +28,19 @@ namespace CarrBnk.Financial.Report.Infra.Consumers
 
         private void Consume(object? sender, BasicDeliverEventArgs e)
         {
-            _logger.LogInformation("{class} | Consume!", nameof(FinancialPostingCreatedConsumer));
+            _logger.LogInformation("{class} | Consume!", nameof(FinancialPostingUpdatedConsumer));
 
-            try
+            var body = e.Body.ToArray();
+
+            var ev = JsonConvert.DeserializeObject<FinancialPostingUpdatedEvent>(Encoding.UTF8.GetString(body));
+
+            if(ev == null)
             {
-                var body = e.Body.ToArray();
-
-                var ev = JsonConvert.DeserializeObject<FinancialPostingCreatedEvent>(Encoding.UTF8.GetString(body));
-
-                if (ev == null)
-                {
-                    _logger.LogWarning("{class} | Event null!", nameof(FinancialPostingCreatedConsumer));
-                    return;
-                }
-
-                _repository.Insert(new FinancialPostings(ev.Code, ev.Value, ev.FinancialPostingType, ev.CreationDate), new CancellationToken()).GetAwaiter().GetResult();
+                _logger.LogWarning("{class} | Event null!", nameof(FinancialPostingUpdatedConsumer));
+                return;
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "{class} | Error!", nameof(FinancialPostingCreatedConsumer));
-            }
+            
+            _repository.Update(new FinancialPostings(ev.Code, ev.Value, ev.FinancialPostingType, null), new CancellationToken());
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -56,7 +49,7 @@ namespace CarrBnk.Financial.Report.Infra.Consumers
             
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.LogInformation("{class} | ExecuteAsync | {time}", nameof(FinancialPostingCreatedConsumer), DateTimeOffset.UtcNow);
+                _logger.LogInformation("{class} | ExecuteAsync | {time}", nameof(FinancialPostingUpdatedConsumer), DateTimeOffset.UtcNow);
                 
                 await Task.Delay(1000, stoppingToken);
             }

@@ -51,12 +51,17 @@ namespace CarrBnk.Financial.Report.Infra.Repositories
 
         public async Task<IEnumerable<FinancialPostings>> GetDailyFinancialMovements(DateTime startOfDay, DateTime endOfDay, CancellationToken cancellationToken)
         {
-            return await _financialMongoClient
+            var builder = Builders<FinancialReportModel>.Filter;
+            var filter = builder.Empty;
+
+            filter &= builder.Gte(x => x.CreationDate, startOfDay);
+            filter &= builder.Lt(x => x.CreationDate, endOfDay);
+
+            var result = await _financialMongoClient
                 .FinancialPostings()
-                .AsQueryable()
-                .Where(k => k.CreationDate.HasValue && (k.CreationDate.Value.Date > startOfDay && k.CreationDate.Value.Date < endOfDay))
-                .Select(k => new FinancialPostings(k.Id.ToString(), k.Value, k.FinancialPostingType, k.CreationDate.Value))
-                .ToListAsync();
+                .Find(filter).ToListAsync();
+
+            return result.Select(k => new FinancialPostings(k.Id.ToString(), k.Value, k.FinancialPostingType, k.CreationDate));
         }
     }
 }

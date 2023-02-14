@@ -7,17 +7,6 @@ using CarrBnk.Financial.Report.Infra.Consumers;
 using CarrBnk.RabbitMq.Configurations;
 using CarrBnk.Redis.Configurations;
 
-using IHost host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices((hostContext, services) =>
-    {
-        services.AddRabbitMqConfiguration(hostContext.Configuration);
-        services.AddLogging();
-        services.AddHostedService<FinancialPostingCreatedConsumer>();
-    })
-    .Build();
-
-await host.RunAsync();
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -35,7 +24,8 @@ builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddRabbitMqConfiguration(builder.Configuration);
 builder.Services.AddValidationConfiguration();
 builder.Services.AddLocalValidatorsConfiguration();
-builder.Services.AddRepoConfiguration();
+builder.Services.AddRepositoryConfiguration();
+builder.Services.AddHostedService<FinancialPostingCreatedConsumer>();
 
 var app = builder.Build();
 
@@ -61,3 +51,16 @@ app.MapHealthChecks("/health");
 app.MapControllers();
 
 app.Run();
+
+//using IHost host = Host.CreateDefaultBuilder(args)
+//    .ConfigureServices((hostContext, services) =>
+//    {
+//        services.AddRabbitMqConfiguration(hostContext.Configuration);
+//        services.AddMongoConfiguration(hostContext.Configuration);
+//        services.AddLogging();
+//        services.AddRepositoryConfiguration();
+//        services.AddHostedService<FinancialPostingCreatedConsumer>();
+//    })
+//    .Build();
+
+//await host.RunAsync();
