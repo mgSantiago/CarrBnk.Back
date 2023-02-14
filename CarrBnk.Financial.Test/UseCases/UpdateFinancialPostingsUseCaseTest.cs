@@ -11,36 +11,32 @@ using Xunit;
 
 namespace CarrBnk.Financial.Test.UseCases
 {
-    public class CreateFinancialPostingsUseCaseTest
+    public class UpdateFinancialPostingsUseCaseTest
     {
-        private readonly CreateFinancialPostingsUseCase _useCase;
+        private readonly UpdateFinancialPostingsUseCase _useCase;
         private readonly Mock<IPublisherService> _publisherService;
         private readonly Mock<IFinancialPostingsRepository> _financialPostingRepository;
-        private readonly Mock<ILogger<CreateFinancialPostingsUseCase>> _logger;
+        private readonly Mock<ILogger<UpdateFinancialPostingsUseCase>> _logger;
 
-        public CreateFinancialPostingsUseCaseTest()
+        public UpdateFinancialPostingsUseCaseTest()
         {
             _publisherService = new Mock<IPublisherService>();
             _financialPostingRepository = new Mock<IFinancialPostingsRepository>();
-            _logger = new Mock<ILogger<CreateFinancialPostingsUseCase>>();
-            _useCase = new CreateFinancialPostingsUseCase(_financialPostingRepository.Object, _logger.Object, _publisherService.Object);
+            _logger = new Mock<ILogger<UpdateFinancialPostingsUseCase>>();
+            _useCase = new UpdateFinancialPostingsUseCase(_financialPostingRepository.Object, _logger.Object, _publisherService.Object);
         }
 
         [Fact]
-        public async Task CreateFinancialPostingsSucceeded()
+        public async Task UpdateFinancialPostingsSucceeded()
         {
             //Arrange
 
-            var request = new AutoFaker<CreateFinancialPostingsRequest>().Generate();
+            var request = new AutoFaker<UpdateFinancialPostingsRequest>().Generate();
 
             var code = Guid.NewGuid().ToString();
 
-            _financialPostingRepository.Setup(k => k.Insert(It.IsAny<FinancialPostings>(), It.IsAny<CancellationToken>()))
-                .Returns((FinancialPostings financialPostings, CancellationToken cancellationToken) =>
-                {
-                    financialPostings.SetCode(code);
-                    return Task.CompletedTask;
-                });
+            _financialPostingRepository.Setup(k => k.Update(It.IsAny<FinancialPostings>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(true);
 
             //Act
 
@@ -49,12 +45,12 @@ namespace CarrBnk.Financial.Test.UseCases
             //Assert
 
             _publisherService.Verify(k => k.Publish(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            _financialPostingRepository.Verify(k => k.Insert(It.IsAny<FinancialPostings>(), It.IsAny<CancellationToken>()), Times.Once);
-            result.Should().Be(code);
+            _financialPostingRepository.Verify(k => k.Update(It.IsAny<FinancialPostings>(), It.IsAny<CancellationToken>()), Times.Once);
+            result.Should().BeTrue();
         }
 
         [Fact]
-        public async Task CreateFinancialPostingsError()
+        public async Task UpdateFinancialPostingsError()
         {
             //Arrange
 
@@ -65,7 +61,7 @@ namespace CarrBnk.Financial.Test.UseCases
             //Assert
 
             _publisherService.Verify(k => k.Publish(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-            _financialPostingRepository.Verify(k => k.Insert(It.IsAny<FinancialPostings>(), It.IsAny<CancellationToken>()), Times.Never);
+            _financialPostingRepository.Verify(k => k.Update(It.IsAny<FinancialPostings>(), It.IsAny<CancellationToken>()), Times.Never);
         }
     }
 }
