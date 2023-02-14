@@ -1,6 +1,4 @@
 ﻿using AutoBogus;
-using AutoMapper;
-using Bogus;
 using CarrBnk.Financial.Core.Entities;
 using CarrBnk.Financial.Core.Ports.Repositories;
 using CarrBnk.Financial.Core.UseCases;
@@ -9,6 +7,7 @@ using CarrBnk.RabbitMq.Services;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
+using Xunit;
 
 namespace CarrBnk.Financial.Test.UseCases
 {
