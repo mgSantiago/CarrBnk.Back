@@ -43,9 +43,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrBnk.RabbitMq", "CarrBnk
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrBnk.Financial.Report", "CarrBnk.Financial.Report\CarrBnk.Financial.Report.csproj", "{2021E91E-B49B-460A-95FE-6F5676B74D61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrBnk.Financial.Report.Core", "CarrBnk.Financial.Report.Core\CarrBnk.Financial.Report.Core.csproj", "{BFFF8062-481B-47C0-A9F3-B358B150BE47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrBnk.Financial.Report.Core", "CarrBnk.Financial.Report.Core\CarrBnk.Financial.Report.Core.csproj", "{BFFF8062-481B-47C0-A9F3-B358B150BE47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrBnk.Financial.Report.Infra", "CarrBnk.Financial.Report.Infra\CarrBnk.Financial.Report.Infra.csproj", "{0F5F8710-F19B-4F5C-A00B-1ACDFFF2661E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrBnk.Financial.Report.Infra", "CarrBnk.Financial.Report.Infra\CarrBnk.Financial.Report.Infra.csproj", "{0F5F8710-F19B-4F5C-A00B-1ACDFFF2661E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrBnk.Financial.Report.Test", "CarrBnk.Financial.Report.Test\CarrBnk.Financial.Report.Test.csproj", "{3402377A-1DE5-4215-9C8F-8A05137547AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,6 +111,10 @@ Global
 		{0F5F8710-F19B-4F5C-A00B-1ACDFFF2661E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F5F8710-F19B-4F5C-A00B-1ACDFFF2661E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F5F8710-F19B-4F5C-A00B-1ACDFFF2661E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3402377A-1DE5-4215-9C8F-8A05137547AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3402377A-1DE5-4215-9C8F-8A05137547AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3402377A-1DE5-4215-9C8F-8A05137547AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3402377A-1DE5-4215-9C8F-8A05137547AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +134,7 @@ Global
 		{2021E91E-B49B-460A-95FE-6F5676B74D61} = {42FA6462-A16F-44CE-9811-4A5E18108542}
 		{BFFF8062-481B-47C0-A9F3-B358B150BE47} = {09BEF1EA-0091-411F-B6B0-2599B8FC7C6C}
 		{0F5F8710-F19B-4F5C-A00B-1ACDFFF2661E} = {29710302-598F-434A-B612-E8B622BC3EBB}
+		{3402377A-1DE5-4215-9C8F-8A05137547AF} = {A0954BFF-BE0C-4AB9-8BF0-3970DC7F07D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EE2013EA-1020-4387-9C42-2FCE25C32E65}

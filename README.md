@@ -14,3 +14,5 @@ http://localhost:15672/
 
 # Acesso ao MongoDb
 http://localhost:8081/
+
+Falta indexação do banco.
