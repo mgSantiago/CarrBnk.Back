@@ -18,11 +18,9 @@ namespace CarrBnk.Authentication.Core.UseCase
 
         public async Task<LoginUseCaseResponse> Handle(LoginUseCaseRequest request, CancellationToken cancellationToken)
         {
-            //TODO: Fazer tratamento de erro simples para o request
-
             var user = await _userRepository.Get(request.UserName, request.Password);
 
-            if (user == null) return null; //TODO: Fazer tratamento de erro simples
+            if (user == null) return null;
 
             var token = await _tokenService.GetToken(user);
 

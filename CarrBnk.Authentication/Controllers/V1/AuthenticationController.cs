@@ -25,6 +25,8 @@ namespace CarrBnk.Authentication.Controllers.V1
         {
             var response = await _mediator.Send(request, cancellationToken);
 
+            if(response == null) return BadRequest(response);
+
             return Ok(response);
         }
 

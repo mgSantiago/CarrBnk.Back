@@ -15,7 +15,7 @@ namespace CarrBnk.Authentication.Infra.Repositories
 
             await Task.Yield();
 
-            return users.FirstOrDefault(x => x.Username.ToLower() == username.ToLower() && x.Password == x.Password);
+            return users.FirstOrDefault(x => x.Username.ToLower() == username.ToLower() && x.Password == password.ToLower()); ;
         }
     }
 }
