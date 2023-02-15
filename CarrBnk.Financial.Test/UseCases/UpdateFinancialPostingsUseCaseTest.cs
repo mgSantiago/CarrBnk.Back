@@ -50,7 +50,7 @@ namespace CarrBnk.Financial.Test.UseCases
         }
 
         [Fact]
-        public async Task UpdateFinancialPostingsError()
+        public async Task UpdateFinancialPostingsNullReferenceException()
         {
             //Arrange
 

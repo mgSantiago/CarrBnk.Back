@@ -1,4 +1,6 @@
-﻿namespace CarrBnk.Authentication.Core.Entities
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace CarrBnk.Authentication.Core.Entities
 {
     public class User
     {

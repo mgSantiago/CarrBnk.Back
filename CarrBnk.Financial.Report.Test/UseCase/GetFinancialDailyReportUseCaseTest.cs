@@ -29,7 +29,7 @@ namespace CarrBnk.Financial.Report.Test.UseCase
         [InlineData(10.0, 5.0, 15.0)]
         [InlineData(5.0, 2.0, 8.0)]
         [InlineData(2.0, 1.0, 3.0)]
-        public async Task CreateFinancialPostingsSucceeded(decimal inFlowValue, decimal outFlowValue, decimal expectedResult)
+        public async Task GetFinancialDailyReportSucceeded(decimal inFlowValue, decimal outFlowValue, decimal expectedResult)
         {
             //Arrange
 
@@ -61,6 +61,20 @@ namespace CarrBnk.Financial.Report.Test.UseCase
             result.CashInFlowMovementsCount.Should().Be(2);
             result.CashOutFlowMovementsCount.Should().Be(1);
             result.TotalMovements.Should().Be(3);
+        }
+
+        [Fact]
+        public async Task GetFinancialDailyReportNullReferenceException()
+        {
+            //Arrange
+
+            //Act
+
+            await Assert.ThrowsAsync<NullReferenceException>(() => _useCase.Handle(null, new CancellationToken()));
+
+            //Assert
+
+            _repository.Verify(k => k.GetDailyFinancialMovements(It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<CancellationToken>()), Times.Never);
         }
     }
 }
