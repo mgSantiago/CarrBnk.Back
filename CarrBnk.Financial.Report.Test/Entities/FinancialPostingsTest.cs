@@ -1,0 +1,32 @@
+﻿using AutoBogus;
+using CarrBnk.Financial.Report.Core.Entities;
+using CarrBnk.Financial.Report.Core.Enums;
+using FluentAssertions;
+using Xunit;
+
+namespace CarrBnk.Financial.Report.Test.Entities
+{
+    public class FinancialPostingsTest
+    {
+        [Theory]
+        [InlineData(FinancialPostingType.CashInFlow, 5)]
+        [InlineData(FinancialPostingType.CashOutFlow, -5)]
+        public async Task ShouldBeValid(FinancialPostingType financialPostingType, int expectedRealValue)
+        {
+            //Arrange
+
+            var financialPostings = new AutoFaker<FinancialPostings>()
+                .RuleFor(k => k.FinancialPostingType, financialPostingType)
+                .RuleFor(k => k.Value, 5)
+                .Generate();
+
+            //Act
+
+            var realValue = financialPostings.GetRealValue();
+
+            //Assert
+
+            realValue.Should().Be(expectedRealValue);
+        }
+    }
+}

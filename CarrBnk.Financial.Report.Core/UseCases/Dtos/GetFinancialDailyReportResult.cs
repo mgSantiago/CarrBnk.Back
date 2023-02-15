@@ -1,5 +1,8 @@
-﻿namespace CarrBnk.Financial.Report.Core.UseCases.Dtos
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace CarrBnk.Financial.Report.Core.UseCases.Dtos
 {
+    [ExcludeFromCodeCoverage]
     public class GetFinancialDailyReportResult
     {
         public GetFinancialDailyReportResult(decimal dailyConsolidation, int cashInFlowMovementsCount, int cashOutFlowMovementsCount, int totalMovements)
