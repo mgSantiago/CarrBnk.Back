@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CarrBnk.Financial.Report.Controllers.V1
 {
     [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]")]
+    [Route("api/v{version:apiVersion}/transactions-report")]
     [ApiVersion("1.0")]
     [Authorize]
     public class TransactionsReportController : ControllerBase
@@ -24,9 +24,9 @@ namespace CarrBnk.Financial.Report.Controllers.V1
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get([FromQuery] GetFinancialDailyReportRequest request, CancellationToken cancellationToken)
         {
-            var success = await _mediator.Send(request, cancellationToken);
+            var result = await _mediator.Send(request, cancellationToken);
 
-            return CreatedAtAction(nameof(Get), success);
+            return CreatedAtAction(nameof(Get), result);
         }
     }
 }
