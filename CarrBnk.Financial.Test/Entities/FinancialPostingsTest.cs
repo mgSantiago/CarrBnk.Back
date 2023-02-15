@@ -7,12 +7,12 @@ namespace CarrBnk.Financial.Test.Entities
 {
     public class FinancialPostingsTest
     {
-        [Fact]
-        public async Task ShouldSetCode()
+        [Theory]
+        [InlineData("code_test")]
+        [InlineData(null)]
+        public async Task ShouldSetCode(string code)
         {
             //Arrange
-
-            var code = "code_test";
 
             var financialPostings = new AutoFaker<FinancialPostings>().Generate();
 

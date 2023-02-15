@@ -21,7 +21,7 @@ namespace CarrBnk.Financial.Core.Entities
 
         public void SetCode(string code)
         {
-            Code = code ?? string.Empty;
+            Code = code;
         }
     }
 }
