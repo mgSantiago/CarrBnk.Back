@@ -6,7 +6,7 @@ O projeto CarrBnk é um exemplo de código criado para validação técnica, ele é co
 - CarrBnk.Financial
 - CarrBnk.Financial.Report
 
-Todos eles foram construídos utilizando conhecimento prévio em Arquitetura Hexagonal e Clean Architecture, estes projetos foram feitos com apenas três camadas, tendo uma camada App de entrada, uma camada Core para lógica de negócios e entidades e uma camada final de Infra contendo os adaptadores necessários para cada projeto. A camada Core foi reduzida de duas para uma camada, pois o intuito do projeto é ser microsserviço, sendo assim, a complexidade arquitetural foi ser reduzida.
+Todos eles foram construídos utilizando conhecimento prévio em Arquitetura Hexagonal e Clean Architecture, estes projetos foram feitos com apenas três camadas, tendo uma camada App de entrada, uma camada Core para lógica de negócios e entidades e uma camada final de Infra contendo os adaptadores necessários para cada projeto. A camada Core foi reduzida de duas para uma camada, pois o intuito do projeto é ser microsserviço, sendo assim, a complexidade arquitetural foi reduzida.
 
 Todos os projetos estão incluídos no mesmo repositório apenas para facilitar a validação, porém, em um projeto real, cada microsserviço teria seu repositório separado.
 
