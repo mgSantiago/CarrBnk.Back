@@ -24,11 +24,13 @@ namespace CarrBnk.Financial.Report.Core.UseCases
 
             var financialPosting = new FinancialPostings(request.Code, request.Value, request.FinancialPostingType, DateTime.UtcNow);
 
-            var code = await _repository.Insert(financialPosting, cancellationToken);
+            await _repository.Insert(financialPosting, cancellationToken);
+
+            //TODO: Adicionar Redis aqui removendo o cache do GET, mas não sei se vai dar tempo.
 
             _logger.LogInformation("{class} | Created | Code: {code}", nameof(CreateFinancialPostingsReportUseCase), financialPosting.Code);
 
-            return code;
+            return financialPosting.Code;
         }
     }
 }

@@ -24,6 +24,8 @@ namespace CarrBnk.Financial.Report.Core.UseCases
             var startOfDay = request.Date.Date;
             var endOfDay = request.Date.Date.AddDays(1);
 
+            //TODO: Adicionar Redis aqui para não ficar sempre buscando do banco, mas não sei se vai dar tempo.
+
             var financialPostings = await _repository.GetDailyFinancialMovements(startOfDay, endOfDay, cancellationToken);
 
             _logger.LogInformation("{class} | Report Created | Rows: {rows}, Date: {date}", nameof(GetFinancialDailyReportUseCase), financialPostings.Count(), request.Date.ToShortDateString());

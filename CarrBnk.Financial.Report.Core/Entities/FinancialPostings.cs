@@ -23,7 +23,9 @@ namespace CarrBnk.Financial.Report.Core.Entities
 
             return Value;
         }
-
-
+        public void SetCode(string code)
+        {
+            Code = code;
+        }
     }
 }

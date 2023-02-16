@@ -26,6 +26,8 @@ namespace CarrBnk.Financial.Report.Core.UseCases
 
             var code = await _repository.Update(financialPosting, cancellationToken);
 
+            //TODO: Adicionar Redis aqui removendo o cache do GET, mas não sei se vai dar tempo.
+
             _logger.LogInformation("{class} | Updated | Code: {code}", nameof(UpdateFinancialDailyReportUseCase), code);
 
             return code;

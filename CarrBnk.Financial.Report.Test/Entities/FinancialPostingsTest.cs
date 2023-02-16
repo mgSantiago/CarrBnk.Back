@@ -28,5 +28,23 @@ namespace CarrBnk.Financial.Report.Test.Entities
 
             realValue.Should().Be(expectedRealValue);
         }
+
+        [Theory]
+        [InlineData("code_test")]
+        [InlineData(null)]
+        public async Task ShouldSetCode(string code)
+        {
+            //Arrange
+
+            var financialPostings = new AutoFaker<FinancialPostings>().Generate();
+
+            //Act
+
+            financialPostings.SetCode(code);
+
+            //Assert
+
+            financialPostings.Code.Should().Be(code);
+        }
     }
 }

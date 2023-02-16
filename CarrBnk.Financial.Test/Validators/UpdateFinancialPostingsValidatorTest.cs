@@ -2,10 +2,8 @@
 using CarrBnk.Financial.Core.UseCases.Dtos;
 using CarrBnk.Financial.Core.UseCases.Validators;
 using FluentValidation.TestHelper;
-using System.Drawing;
 using System.Text;
 using Xunit;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CarrBnk.Financial.Test.Validators
 {
@@ -39,13 +37,15 @@ namespace CarrBnk.Financial.Test.Validators
             result.ShouldNotHaveAnyValidationErrors();
         }
 
-        [Fact]
-        public async Task ShouldHaveErrorWhenValueIsZero()
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-5)]
+        public async Task ShouldHaveErrorWhenValueIsLessOrEqualToZero(int value)
         {
             //Arrange
 
             var model = new AutoFaker<UpdateFinancialPostingsRequest>()
-                .RuleFor(k => k.Value, 0)
+                .RuleFor(k => k.Value, value)
                 .Generate();
 
             //Act
