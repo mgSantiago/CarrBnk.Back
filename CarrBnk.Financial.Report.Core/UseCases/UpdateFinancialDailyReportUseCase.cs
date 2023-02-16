@@ -1,11 +1,12 @@
 ﻿using CarrBnk.Financial.Report.Core.Entities;
 using CarrBnk.Financial.Report.Core.Ports.Repositories;
 using CarrBnk.Financial.Report.Core.UseCases.Dtos;
+using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace CarrBnk.Financial.Report.Core.UseCases
 {
-    public class UpdateFinancialDailyReportUseCase
+    public class UpdateFinancialDailyReportUseCase : IRequestHandler<UpdateFinancialDailyReportRequest, bool>
     {
         private readonly IFinancialReportRepository _repository;
         private readonly ILogger<UpdateFinancialDailyReportUseCase> _logger;
