@@ -38,7 +38,7 @@ Existe uma pasta chamada Files na raiz do projeto, esta pasta contém os desenhos
 
 # Testes Unitários
 
-Todos os projetos tem 100% de cobertura de testes unitários em cima da lógica de negócio, esta lógica se encontra na camada Core de cada projeto nas pastas "Entities", "UseCase" e "UseCase\Validators"
+Todos os projetos tem 100% de cobertura das linhas de testes unitários em cima da lógica de negócio, esta lógica se encontra na camada Core de cada projeto nas pastas "Entities", "UseCase" e "UseCase\Validators"
 
 Cada microsserviço tem seu próprio projeto de teste, se tivessemos os três repositórios separados como dito anteriormente, cada projeto de teste ficaria com seu respectivo responsável.
 
