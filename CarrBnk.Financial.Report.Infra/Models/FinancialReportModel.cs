@@ -1,6 +1,5 @@
-﻿using CarrBnk.Financial.Report.Core.Enums;
+﻿using CarrBnk.Financial.Report.Core.Constants.Enums;
 using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace CarrBnk.Financial.Report.Infra.Models

@@ -1,6 +1,5 @@
-﻿using CarrBnk.Financial.Core.Enums;
+﻿using CarrBnk.Financial.Report.Core.Constants.Enums;
 using CarrBnk.Financial.Report.Core.CoreEvents;
-using CarrBnk.Financial.Report.Core.Entities;
 using CarrBnk.Financial.Report.Core.Ports.Repositories;
 using CarrBnk.Financial.Report.Core.UseCases.Dtos;
 using CarrBnk.RabbitMq.Services;

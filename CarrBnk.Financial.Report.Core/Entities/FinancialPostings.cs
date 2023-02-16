@@ -1,4 +1,4 @@
-﻿using CarrBnk.Financial.Report.Core.Enums;
+﻿using CarrBnk.Financial.Report.Core.Constants.Enums;
 
 namespace CarrBnk.Financial.Report.Core.Entities
 {

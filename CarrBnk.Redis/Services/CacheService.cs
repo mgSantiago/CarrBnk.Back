@@ -14,7 +14,7 @@ namespace CarrBnk.Redis.Services
 
         public async Task<bool> AddCacheAsync(string key, object obj)
         {
-            return await _redisConnector.GetDB.StringSetAsync(key, JsonConvert.SerializeObject(obj));
+            return await _redisConnector.GetDB.StringSetAsync(key, JsonConvert.SerializeObject(obj), new TimeSpan(2, 0, 0));
         }
 
         public async Task<bool> RemoveCacheAsync(string key)
@@ -26,7 +26,9 @@ namespace CarrBnk.Redis.Services
         {
             var cache = await _redisConnector.GetDB.StringGetAsync(key);
 
-            return JsonConvert.DeserializeObject<T>(cache); //TODO: Validar esta deserialização com possibilidade de nulo.
+            if (!cache.HasValue || cache.IsNullOrEmpty) return null;
+
+            return JsonConvert.DeserializeObject<T>(cache);
         }
     }
 }

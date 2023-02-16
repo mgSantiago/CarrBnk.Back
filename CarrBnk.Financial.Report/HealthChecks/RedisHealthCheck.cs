@@ -6,12 +6,10 @@ namespace CarrBnk.Financial.Report.HealthChecks
     public class RedisHealthCheck : IHealthCheck
     {
         private readonly IConnectionMultiplexer _redisCache;
-        private readonly IConfiguration _configuration;
 
-        public RedisHealthCheck(IConnectionMultiplexer redisCache, IConfiguration configuration)
+        public RedisHealthCheck(IConnectionMultiplexer redisCache)
         {
             _redisCache = redisCache;
-            _configuration = configuration;
         }
 
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)

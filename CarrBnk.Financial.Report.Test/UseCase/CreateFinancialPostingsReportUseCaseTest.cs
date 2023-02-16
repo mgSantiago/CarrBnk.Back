@@ -3,6 +3,7 @@ using CarrBnk.Financial.Report.Core.Entities;
 using CarrBnk.Financial.Report.Core.Ports.Repositories;
 using CarrBnk.Financial.Report.Core.UseCases;
 using CarrBnk.Financial.Report.Core.UseCases.Dtos;
+using CarrBnk.Redis.Services;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -15,12 +16,14 @@ namespace CarrBnk.Financial.Test.UseCases
         private readonly CreateFinancialPostingsReportUseCase _useCase;
         private readonly Mock<IFinancialReportRepository> _financialReportRepository;
         private readonly Mock<ILogger<CreateFinancialPostingsReportUseCase>> _logger;
+        private readonly Mock<ICacheService> _cacheService;
 
         public CreateFinancialPostingsReportUseCaseTest()
         {
             _financialReportRepository = new Mock<IFinancialReportRepository>();
+            _cacheService = new Mock<ICacheService>();
             _logger = new Mock<ILogger<CreateFinancialPostingsReportUseCase>>();
-            _useCase = new CreateFinancialPostingsReportUseCase(_financialReportRepository.Object, _logger.Object);
+            _useCase = new CreateFinancialPostingsReportUseCase(_financialReportRepository.Object, _logger.Object, _cacheService.Object);
         }
 
         [Fact]

@@ -1,4 +1,4 @@
-﻿namespace CarrBnk.Financial.Report.Core.Enums
+﻿namespace CarrBnk.Financial.Report.Core.Constants.Enums
 {
     public enum FinancialPostingType
     {

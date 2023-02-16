@@ -1,5 +1,4 @@
-﻿using CarrBnk.Financial.Report.Core.Enums;
-using MediatR;
+﻿using MediatR;
 using System.Diagnostics.CodeAnalysis;
 
 namespace CarrBnk.Financial.Report.Core.UseCases.Dtos

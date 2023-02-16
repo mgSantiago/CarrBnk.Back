@@ -1,9 +1,10 @@
 ﻿using AutoBogus;
+using CarrBnk.Financial.Report.Core.Constants.Enums;
 using CarrBnk.Financial.Report.Core.Entities;
-using CarrBnk.Financial.Report.Core.Enums;
 using CarrBnk.Financial.Report.Core.Ports.Repositories;
 using CarrBnk.Financial.Report.Core.UseCases;
 using CarrBnk.Financial.Report.Core.UseCases.Dtos;
+using CarrBnk.Redis.Services;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -17,12 +18,14 @@ namespace CarrBnk.Financial.Report.Test.UseCase
 
         private readonly Mock<IFinancialReportRepository> _repository;
         private readonly Mock<ILogger<GetFinancialDailyReportUseCase>> _logger;
+        private readonly Mock<ICacheService> _cacheService;
 
         public GetFinancialDailyReportUseCaseTest()
         {
             _repository = new Mock<IFinancialReportRepository>();
             _logger = new Mock<ILogger<GetFinancialDailyReportUseCase>>();
-            _useCase = new GetFinancialDailyReportUseCase(_repository.Object, _logger.Object);
+            _cacheService = new Mock<ICacheService>();
+            _useCase = new GetFinancialDailyReportUseCase(_repository.Object, _logger.Object, _cacheService.Object);
         }
 
         [Theory]
@@ -57,6 +60,7 @@ namespace CarrBnk.Financial.Report.Test.UseCase
             //Assert
 
             _repository.Verify(k => k.GetDailyFinancialMovements(It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<CancellationToken>()), Times.Once);
+            _cacheService.Verify(k => k.GetCacheAsync<It.IsAnyType>(It.IsAny<string>()), Times.Once);
             result.DailyConsolidation.Should().Be(expectedResult);
             result.CashInFlowMovementsCount.Should().Be(2);
             result.CashOutFlowMovementsCount.Should().Be(1);

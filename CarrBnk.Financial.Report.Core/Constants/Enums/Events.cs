@@ -1,4 +1,4 @@
-﻿namespace CarrBnk.Financial.Core.Enums
+﻿namespace CarrBnk.Financial.Report.Core.Constants.Enums
 {
     public enum Events
     {

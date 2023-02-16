@@ -1,5 +1,5 @@
-﻿using CarrBnk.Financial.Report.Core.Entities;
-using CarrBnk.Financial.Report.Core.Enums;
+﻿using CarrBnk.Financial.Report.Core.Constants.Enums;
+using CarrBnk.Financial.Report.Core.Entities;
 using System.Diagnostics.CodeAnalysis;
 
 namespace CarrBnk.Financial.Report.Core.UseCases.Dtos
