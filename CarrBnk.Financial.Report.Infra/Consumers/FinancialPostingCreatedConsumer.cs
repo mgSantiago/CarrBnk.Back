@@ -2,7 +2,10 @@
 using CarrBnk.Financial.Report.Core.CoreEvents;
 using CarrBnk.Financial.Report.Core.Entities;
 using CarrBnk.Financial.Report.Core.Ports.Repositories;
+using CarrBnk.Financial.Report.Core.UseCases.Dtos;
 using CarrBnk.RabbitMq.Services;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -16,14 +19,17 @@ namespace CarrBnk.Financial.Report.Infra.Consumers
         private readonly IConsumerService _consumerService;
         private readonly ILogger<FinancialPostingCreatedConsumer> _logger;
         private readonly IFinancialReportRepository _repository;
+        private readonly IServiceProvider _serviceProvider;
 
         public FinancialPostingCreatedConsumer(IConsumerService consumerService, 
                                             ILogger<FinancialPostingCreatedConsumer> logger,
-                                            IFinancialReportRepository repository)
+                                            IFinancialReportRepository repository,
+                                            IServiceProvider serviceProvider)
         {
             _consumerService = consumerService;
             _logger = logger;
             _repository = repository;
+            _serviceProvider = serviceProvider;
         }
 
         private void Consume(object? sender, BasicDeliverEventArgs e)
@@ -42,12 +48,18 @@ namespace CarrBnk.Financial.Report.Infra.Consumers
                     return;
                 }
 
-                _repository.Insert(new FinancialPostings(ev.Code, ev.Value, ev.FinancialPostingType, ev.CreationDate), new CancellationToken()).GetAwaiter().GetResult();
+                GetMediator().Send(new CreateFinancialPostingsRequest(ev.Code, ev.FinancialPostingType, ev.Value));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "{class} | Error!", nameof(FinancialPostingCreatedConsumer));
             }
+        }
+
+        private IMediator GetMediator()
+        {
+            var scope = _serviceProvider.CreateScope();
+            return scope.ServiceProvider.GetService<IMediator>();
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)

@@ -17,6 +17,25 @@ Todos os projetos estão incluídos no mesmo repositório apenas para facilitar a v
 - Redis; 
 - RabbitMq;
 
+# Boas Práticas Práticas/Padrões Utilizados
+
+- SOLID
+- DDD
+- MicroServices
+- Notification Pattern com Fail Fast Validation
+- Singleton Pattern
+- Factory Pattern
+- Facade Pattern
+- Iterator Pattern
+- Mediator Pattern
+- Observer Pattern
+- Messaging Pattern
+- Repository Pattern
+
+# Arquivos Relacionados
+
+Existe uma pasta chamada Files na raiz do projeto, esta pasta contém os desenhos arquiteturais que explicam o sistema.
+
 # Testes Unitários
 
 Todos os projetos tem 100% de cobertura de testes unitários em cima da lógica de negócio, esta lógica se encontra na camada Core de cada projeto nas pastas "Entities", "UseCase" e "UseCase\Validators"
@@ -186,4 +205,4 @@ choco install another-redis-desktop-manager
 
 # Outras Informações
 
-Este projeto deve ser considerado como uma versão Alfa, pois tem muita coisa que ainda pode ser evoluída, ele foi feito da melhor forma possível no menor tempo disponível possível. Em caso de alguma dúvida ou evolução, a discussão sempre será bem vinda.
+Este projeto deve ser considerado como uma versão Alfa, pois tem bastante possibilidade de evolução, ele foi feito da melhor forma possível no tempo disponível, em caso de alguma dúvida ou evolução, a discussão sempre será bem vinda.

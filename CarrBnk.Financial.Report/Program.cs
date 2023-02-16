@@ -26,6 +26,7 @@ builder.Services.AddValidationConfiguration();
 builder.Services.AddLocalValidatorsConfiguration();
 builder.Services.AddRepositoryConfiguration();
 builder.Services.AddHostedService<FinancialPostingCreatedConsumer>();
+builder.Services.AddHostedService<FinancialPostingUpdatedConsumer>();
 
 var app = builder.Build();
 

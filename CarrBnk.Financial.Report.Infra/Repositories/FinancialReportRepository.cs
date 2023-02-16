@@ -17,7 +17,7 @@ namespace CarrBnk.Financial.Report.Infra.Repositories
         }
         public async Task<string> Insert(FinancialPostings financialPosting, CancellationToken cancellationToken)
         {
-            var objectId = ObjectId.GenerateNewId();
+            var objectId = String.IsNullOrWhiteSpace(financialPosting.Code) ? ObjectId.GenerateNewId() : ObjectId.Parse(financialPosting.Code);
 
             await _financialMongoClient
                 .FinancialPostings()
