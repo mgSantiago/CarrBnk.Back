@@ -31,7 +31,7 @@ Todos os projetos estão incluídos no mesmo repositório apenas para facilitar a v
 - Observer Pattern
 - Messaging Pattern
 - Repository Pattern
-- Pub/Sub
+- Pub/Sub Pattern
 
 # Desenhos Arquiteturais
 
