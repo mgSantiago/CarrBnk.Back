@@ -42,6 +42,8 @@ Todos os projetos estão incluídos no mesmo repositório apenas para facilitar a v
 
 ![](https://msantiago-public-bucket.s3.amazonaws.com/arch-carrbnk-interactions.drawio.png)
 
+Existe uma pasta chamada Files na raiz do projeto, esta pasta contém os desenhos arquiteturais no formato .drawio.
+
 # Testes Unitários
 
 Todos os projetos tem 100% de cobertura das linhas de testes unitários em cima da lógica de negócio, esta lógica se encontra na camada Core de cada projeto nas pastas "Entities", "UseCase" e "UseCase\Validators"
