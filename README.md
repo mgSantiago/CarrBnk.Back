@@ -32,9 +32,15 @@ Todos os projetos estão incluídos no mesmo repositório apenas para facilitar a v
 - Messaging Pattern
 - Repository Pattern
 
-# Arquivos Relacionados
+# Desenhos Arquiteturais
 
-Existe uma pasta chamada Files na raiz do projeto, esta pasta contém os desenhos arquiteturais que explicam o sistema.
+#### Interações do usuário
+
+![](https://msantiago-public-bucket.s3.amazonaws.com/arch-carrbnk.drawio.png)
+
+#### Interações entre serviços
+
+![](https://msantiago-public-bucket.s3.amazonaws.com/arch-carrbnk-interactions.drawio.png)
 
 # Testes Unitários
 
