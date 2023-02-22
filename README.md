@@ -17,7 +17,7 @@ Todos os projetos estão incluídos no mesmo repositório apenas para facilitar a v
 - Redis; 
 - RabbitMq;
 
-# Boas Práticas Práticas/Padrões Utilizados
+# Boas Práticas/Padrões Utilizados
 
 - SOLID
 - DDD
@@ -31,6 +31,7 @@ Todos os projetos estão incluídos no mesmo repositório apenas para facilitar a v
 - Observer Pattern
 - Messaging Pattern
 - Repository Pattern
+- Pub/Sub
 
 # Desenhos Arquiteturais
 
